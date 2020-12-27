@@ -10,5 +10,5 @@
 	<classpathentry kind="lib" path="lib/swt.jar"/>
 	<classpathentry kind="lib" path="lib/jlatexmath-1.0.7.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
-	<classpathentry kind="output" path="out/production/interactivecurvesandsurfaces"/>
+	<classpathentry kind="output" path="bin"/>
 </classpath>
