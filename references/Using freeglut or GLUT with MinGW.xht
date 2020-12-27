@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-GB">
+  <head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>Using freeglut or GLUT with MinGW</title>
+    <meta name="author" content="Martin Payne" />
+    <meta name="description" content="A tutorial on how to compile OpenGL win32 applications using the freeglut or GLUT for Win32 libraries with the MinGW C &amp; C++ compilers." />
+    <link rel="stylesheet" type="text/css" media="screen" href="Using%20freeglut%20or%20GLUT%20with%20MinGW_files/screen.css" title="Transmission Zero" />
+    <link rel="stylesheet" type="text/css" media="print" href="Using%20freeglut%20or%20GLUT%20with%20MinGW_files/print.css" />
+    <link rel="alternate" type="application/atom+xml" href="http://www.transmissionzero.co.uk/newsfeed.atom" />
+    <link rel="icon" type="image/x-icon" href="http://www.transmissionzero.co.uk/common/images/shortcut.ico" />
+    <script type="text/javascript" async="" src="Using%20freeglut%20or%20GLUT%20with%20MinGW_files/ga.js"></script><script type="text/javascript" src="Using%20freeglut%20or%20GLUT%20with%20MinGW_files/analytics.js" async="async"></script>
+    <!--[if lte IE 8]><script type="text/javascript" src="/common/script/html5.js"></script><![endif]-->
+  </head>
+  <body>
+    <header id="heading">
+      <hgroup>
+        <h1>Transmission Zero</h1>
+        <h2>Using freeglut or GLUT with MinGW</h2>
+      </hgroup>
+    </header>
+    <hr class="separator" />
+    <nav id="navigation">
+      <ul>
+        <li><a href="http://www.transmissionzero.co.uk/">Home</a></li>
+        <li><a href="http://www.transmissionzero.co.uk/radio/">Radio</a></li>
+        <li><a href="http://www.transmissionzero.co.uk/audio/">Audio</a></li>
+        <li><a href="http://www.transmissionzero.co.uk/computing/" class="current">Computing</a></li>
+        <li><a href="http://www.transmissionzero.co.uk/software/">Software</a></li>
+        <li><a href="http://www.transmissionzero.co.uk/gaming/">Gaming</a></li>
+        <li><a href="http://www.transmissionzero.co.uk/food-drink/">Food &amp; Drink</a></li>
+        <li><a href="http://www.transmissionzero.co.uk/contact/">Contact</a></li>
+        <li><a href="http://www.transmissionzero.co.uk/news/">News</a></li>
+        <li><a href="https://www.facebook.com/TransmissionZero">Facebook</a></li>
+      </ul>
+    </nav>
+    <hr class="separator" />
+    <article id="content">
+      <section>
+        <h3>Introduction</h3>
+        <p>OpenGL is a popular and widely implemented graphics 
+specification, and is often a good choice when you need to write 
+programs featuring 2D or 3D graphics. However, OpenGL defines how 
+graphics should be drawn, and it is up to the programmer to handle 
+things such as window definition and input from the mouse and keyboard. 
+This can be performed using <abbr title="Application Programmers’ Interface">API</abbr>
+ specific to the windowing system, which of course requires that the 
+programmer have a good knowledge of that API. Alternatively, libraries 
+such as <abbr title="OpenGL Utility Toolkit">GLUT</abbr> or <abbr title="Simple DirectMedia Layer">SDL</abbr>
+ may be used. These provide an abstraction layer from the windowing 
+system, with the added advantage that programs may be written which are 
+independent of architecture and operating system (assuming of course 
+that appropriate libraries are available on that platform).</p>
+        <p>This tutorial focuses on GLUT, and explains how to develop OpenGL applications for Windows using the C or C++ languages with <a href="http://www.mingw.org/" title="Minimalist GNU For Windows">MinGW</a>. MinGW was chosen because it is freely available for download, and because its usage will be familiar to anyone who has used <abbr title="GNU Compiler Collection">GCC</abbr>.</p>
+        <p>I will cover the setting up of both freeglut and GLUT for 
+Win32 in this tutorial, as these are the two most widely used versions 
+of GLUT (there is OpenGLUT too, but this isn’t actively developed). I’ve
+ created packages of both freeglut and GLUT for Win32 which you can 
+download and use with MinGW.</p>
+      </section>
+      <section>
+        <h3>Setting Up MinGW</h3>
+        <p>It is assumed that you already have MinGW installed on your PC. If not, this is covered very well in the <a href="http://www.mingw.org/wiki/Getting_Started" title="MinGW Wiki: Getting Started">MinGW “Getting Started” Wiki</a>.
+ When setting up MinGW, the C compiler will be installed by default. No 
+other MinGW components are needed in order to build freeglut 
+applications, but you’ll probably want to install the C++ compiler as 
+well if you intend to use C++.</p>
+      </section>
+      <section>
+        <h3>Setting Up freeglut With MinGW</h3>
+        <p>freeglut is intended to be a 100% compatible replacement for 
+the original GLUT libraries. Unlike GLUT for Win32, freeglut is an up to
+ date and actively maintained project, so I would recommend using 
+freeglut if you have the choice. You can download my <a href="http://files.transmissionzero.co.uk/software/development/GLUT/freeglut-MinGW.zip" type="application/zip" title="Current freeglut MinGW Packages">freeglut MinGW package</a> <small>(with <a href="http://files.transmissionzero.co.uk/software/development/GLUT/freeglut-MinGW.zip.asc" type="application/pgp-signature" title="PGP signature for freeglut libraries">PGP signature</a> and <a href="http://files.transmissionzero.co.uk/transmissionzero-pgp.asc" type="application/pgp-signature" title="Transmission Zero PGP Public Key">PGP key</a>)</small>,
+ which contains import libraries, headers, and a Windows DLL. Using 
+this, you can either dynamically link against the freeglut DLL, or 
+statically link the library into your application.</p>
+        <p>Once you have downloaded the freeglut MinGW package, create a
+ folder on your PC which is readable by all users, for example 
+“C:\Program Files\Common Files\MinGW\freeglut\”. Copy the “lib\” and 
+“include\” folders from the zip archive to that location.</p>
+        <p>The freeglut DLL should either be placed in the same folder 
+as your application, or can be installed in a system-wide folder which 
+appears in your %PATH% environment variable. On a 32 bit Windows system 
+this is typically “C:\Windows\System32\”, and on a 64 bit Windows system
+ this is typically “C:\Windows\SysWOW64\”.</p>
+      </section>
+      <section>
+        <h3>Compiling freeglut Applications With MinGW</h3>
+        <p>To keep your applications compatible with GLUT, you should “<code class="language-c">#include &lt;GL/glut.h&gt;</code>”. If you want to use freeglut specific extensions, you can “<code class="language-c">#include &lt;GL/freeglut.h&gt;</code>”
+ instead (bear in mind that if you’re using freeglut specific 
+extensions, your code will likely need to be modified in order to build 
+with a different GLUT implementation).</p>
+        <p>When compiling a freeglut application, it’s necessary to pass
+ the path of the “include\” folder you created to the compiler using the
+ “<kbd>-I</kbd>” option. Similarly when linking, it’s necessary to pass the path of the “lib\” folder to the linker using the “<kbd>-L</kbd>” option. In order to link to the freeglut and OpenGL libraries, you should additionally specify “<kbd>-lfreeglut -lopengl32</kbd>” during the link stage.</p>
+        <p>Given a source file “example.c”, which you want to compile to
+ an application “example.exe”, you can compile and link it with the 
+following commands (replacing the include and lib paths with the ones 
+you created above if necessary):</p>
+        <pre xml:space="preserve"><samp><kbd>gcc -c -o example.o example.c -I"C:\Program Files\Common Files\MinGW\freeglut\include"</kbd>
+
+<kbd>gcc -o example.exe example.o -L"C:\Program Files\Common Files\MinGW\freeglut\lib" -lfreeglut -lopengl32 -Wl,--subsystem,windows</kbd></samp></pre>
+        <figure>
+           <img src="Using%20freeglut%20or%20GLUT%20with%20MinGW_files/freeglut-mingw-compile.png" alt="[Windows 7 Command Prompt showing the compile and link commands being executed.]" title="Compiling a GLUT application" width="837" height="402" />
+        </figure>
+        <p>The “<kbd>-Wl,--subsystem,windows</kbd>” on the command line 
+ensures the executable runs as a Windows GUI application rather than a 
+console application. If you’re using <abbr title="OpenGL Utility Library">GLU</abbr> functions, you’ll also need to additionally specify “<kbd>-lglu32</kbd>” on the linker command line.</p>
+        <p>When distributing your application, don’t forget to include 
+the freeglut DLL, or at least provide your users with some method of 
+obtaining a copy.</p>
+      </section>
+      <section>
+        <h3>Statically Linking freeglut</h3>
+        <p>It’s possible statically link freeglut into your 
+applications, instead of dynamically linking against the DLL as detailed
+ above. The main disadvantage of static linking is that when an updated 
+version of freeglut becomes available, the application must be 
+recompiled in order to use the newer version. This is much more effort 
+than when using dynamic linking, where it’s only necessary to deploy the
+ newer version of the DLL—if your user has freeglut knowledge, they 
+could even do this for their self! In any case, if you do want to use 
+static linking it’s fairly simple.</p>
+        <p>The compilation step is almost the same as before, except 
+that you need to define “FREEGLUT_STATIC” before any freeglut headers 
+are included. This is best done by adding “<kbd>-D FREEGLUT_STATIC</kbd>”
+ to the compiler command line. The linker step is also slightly 
+different, as you must specify the static version of the freeglut 
+library rather than the dynamic import library. It’s additionally 
+necessary to link against the Windows multimedia library and GDI 
+libraries, as freeglut uses functions from both of these libraries.</p>
+        <p>Given a source file “example.c”, which you want to compile to
+ an application “example.exe”, you can compile and link it with the 
+static freeglut library using following commands:</p>
+        <pre xml:space="preserve"><samp><kbd>gcc -c -o example.o example.c -D FREEGLUT_STATIC -I"C:\Program Files\Common Files\MinGW\freeglut\include"</kbd>
+
+<kbd>gcc -o example.exe example.o -L"C:\Program Files\Common Files\MinGW\freeglut\lib" -lfreeglut_static -lopengl32 -lwinmm ^
+-lgdi32 -Wl,--subsystem,windows</kbd></samp></pre>
+        <figure>
+           <img src="Using%20freeglut%20or%20GLUT%20with%20MinGW_files/freeglut-static-mingw-compile.png" alt="[Windows 7 Command Prompt showing the compile and link commands being executed.]" title="Compiling a GLUT application" width="837" height="402" />
+        </figure>
+        <p>If you get undefined references to functions when trying to 
+statically link freeglut into your application, check your preprocessor 
+definition and linker flags—static linking will fail if you forget to 
+define “<i>FREEGLUT_STATIC</i>”, or if you have defined it but are linking against wrong libraries.</p>
+      </section>
+      <section>
+        <h3>Setting Up GLUT for Win32 With MinGW</h3>
+        <p>GLUT for Win32 is a Windows port of the original GLUT 
+library. It’s no longer maintained or supported, but it’s still a very 
+popular GLUT package. The MinGW “<i>w32api</i>” package already comes with two GLUT import libraries, “<i>libglut.a</i>” and “<i>libglut32.a</i>”,
+ but doesn’t come with a glut header file. If you’ve ever downloaded a 
+GLUT header from the internet, and attempted to link an application 
+against either of these import libraries, you likely would have seen it 
+fail with various undefined references. This is because the import 
+libraries are from an older version of GLUT for Win32, which doesn’t 
+contain the “atexit hack” functions which appear in the newer header 
+file. I have created an up to date <a href="http://files.transmissionzero.co.uk/software/development/GLUT/GLUT-MinGW.zip" type="application/zip" title="Current GLUT MinGW Package">GLUT MinGW package</a> <small>(with <a href="http://files.transmissionzero.co.uk/software/development/GLUT/GLUT-MinGW.zip.asc" type="application/pgp-signature" title="PGP signature for GLUT libraries">PGP signature</a> and <a href="http://files.transmissionzero.co.uk/transmissionzero-pgp.asc" type="application/pgp-signature" title="Transmission Zero PGP Public Key">PGP key</a>)</small> to fix all of these issues.</p>
+        <p>Once you have downloaded the GLUT MinGW package, create a 
+folder on your PC which is readable by all users, for example 
+“C:\Program Files\Common Files\MinGW\GLUT\”. Copy the “lib\” and 
+“include\” folders from the zip archive to that location.</p>
+        <p>The GLUT DLL should either be placed in the same folder as 
+your application, or can be installed in a system-wide folder which 
+appears in your %PATH% environment variable. On a 32 bit Windows system 
+this is typically “C:\Windows\System32\”, and on a 64 bit Windows system
+ this is typically “C:\Windows\SysWOW64\”.</p>
+      </section>
+      <section>
+        <h3>Compiling GLUT for Win32 Applications With MinGW</h3>
+        <p>To use functions from the GLUT for Win32 library, you should “<code class="language-c">#include &lt;GL/glut.h&gt;</code>” in your source code.</p>
+        <p>As when compiling GLUT applications, it’s necessary to pass 
+the path of the “include\” folder you created to the compiler using the “<kbd>-I</kbd>” option, and the path of the “lib\” folder to the linker using the “<kbd>-L</kbd>” option. When linking a GLUT application, you should link against the GLUT for Win32 and OpenGL libraries with the flags “<kbd>-lglut32 -lopengl32</kbd>”. Again, adding the flag “<kbd>-Wl,--subsystem,windows</kbd>”
+ will ensure it compiles as a Windows GUI application rather than a 
+console application. The commands to compile and link a typical GLUT 
+application would be:</p>
+        <pre xml:space="preserve"><samp><kbd>gcc -c -o example.o example.c -I"C:\Program Files\Common Files\MinGW\GLUT\include"
+
+gcc -o example.exe example.o -L"C:\Program Files\Common Files\MinGW\GLUT\lib" -lglut32 -lopengl32 -Wl,--subsystem,windows</kbd></samp></pre>
+        <figure>
+           <img src="Using%20freeglut%20or%20GLUT%20with%20MinGW_files/glut-mingw-compile.png" alt="[Windows 7 Command Prompt showing the compile and link commands being executed.]" title="Compiling a GLUT application" width="837" height="402" />
+        </figure>
+        <p>As with freeglut, it’s necessary to redistribute the GLUT DLL
+ with your application, or at least provide some method for your users 
+to obtain a copy.</p>
+      </section>
+      <section>
+        <h3>Example GLUT Application</h3>
+        <p>Here is very basic example GLUT application written in C, which you can use for testing once you have configured GLUT.</p>
+        <pre xml:space="preserve"><code class="language-c">#include &lt;stdlib.h&gt;
+#include &lt;GL/glut.h&gt;
+
+void keyboard(unsigned char key, int x, int y);
+void display(void);
+
+
+int main(int argc, char** argv)
+{
+  glutInit(&amp;argc, argv);
+  glutCreateWindow("GLUT Test");
+  glutKeyboardFunc(&amp;keyboard);
+  glutDisplayFunc(&amp;display);
+  glutMainLoop();
+
+  return EXIT_SUCCESS;
+}
+
+
+void keyboard(unsigned char key, int x, int y)
+{
+  switch (key)
+  {
+    case '\x1B':
+      exit(EXIT_SUCCESS);
+      break;
+  }
+}
+
+
+void display()
+{
+  glClear(GL_COLOR_BUFFER_BIT);
+
+  glColor3f(1.0f, 0.0f, 0.0f);
+
+  glBegin(GL_POLYGON);
+    glVertex2f(-0.5f, -0.5f);
+    glVertex2f( 0.5f, -0.5f);
+    glVertex2f( 0.5f,  0.5f);
+    glVertex2f(-0.5f,  0.5f);
+  glEnd();
+
+  glFlush();
+}</code></pre>
+        <p>Running the application should produce something very similar to this:</p>
+        <figure>
+           <img src="Using%20freeglut%20or%20GLUT%20with%20MinGW_files/glut-example.png" alt="[Image of a window containing a red square in the middle]" title="GLUT example program" width="316" height="338" />
+        </figure>
+      </section>
+      <section>
+        <h3>Cross-Compiling GLUT Applications</h3>
+        <p>Although this tutorial focused on compiling GLUT applications
+ with the Windows version of MinGW, you can of course cross-compile them
+ on non-Windows versions. Many Linux distributions have MinGW packages 
+available, and you can build your applications using the instructions 
+above—the only difference being that you’ll have different library and 
+include paths.</p>
+        <p>Under Fedora 14, I placed the libraries and headers under 
+“/usr/local/share/MinGW/freeglut/” and built the application like this:</p>
+        <pre xml:space="preserve"><samp>[mpayne@martpc MinGWGLUT]$ <kbd>i686-pc-mingw32-gcc -c -o example.o example.c -I/usr/local/share/MinGW/freeglut/include/</kbd>
+[mpayne@martpc MinGWGLUT]$ <kbd>i686-pc-mingw32-gcc -o example.exe example.o -L/usr/local/share/MinGW/freeglut/lib/ \
+-lfreeglut -lopengl32 -Wl,--subsystem,windows</kbd></samp></pre>
+        <figure>
+           <img src="Using%20freeglut%20or%20GLUT%20with%20MinGW_files/freeglut-mingw-cross-compile.png" alt="[Gnome Terminal on Fedora 12 showing the compile and link commands being executed.]" title="Compiling a GLUT application" width="825" height="395" />
+        </figure>
+      </section>
+      <aside class="related">
+        <h3>Related Pages</h3>
+        <ul class="related">
+          <li><a href="http://files.transmissionzero.co.uk/software/development/GLUT/">Files for this tutorial</a></li>
+          <li><a href="http://www.transmissionzero.co.uk/software/freeglut-devel/">freeglut Windows Development Libraries</a><br />Windows builds of the freeglut OpenGL library, for use with Microsoft’s Visual C++ and MinGW.</li>
+          <li><a href="http://www.transmissionzero.co.uk/computing/win32-apps-with-mingw/">Building Win32 GUI Applications with MinGW</a><br />How to build a fully featured Windows GUI application using the MinGW compiler.</li>
+          <li><a href="http://www.transmissionzero.co.uk/computing/building-dlls-with-mingw/">Building Windows DLLs with MinGW</a><br />How to build Windows DLLs which export C functions using the MinGW compiler.</li>
+          <li><a href="http://www.transmissionzero.co.uk/computing/advanced-mingw-dll-topics/">Advanced MinGW DLL Topics</a><br />Advanced topics for building DLLs with MinGW, including JNI, P/Invoke, and C++ classes.</li>
+          <li><a href="http://www.transmissionzero.co.uk/computing/">All other computing articles on this site</a></li>
+          <li><a href="http://www.lighthouse3d.com/opengl/glut/">GLUT Tutorial @ Lighthouse 3D</a><br />An excellent introduction to using GLUT</li>
+        </ul>
+      </aside>
+      <aside class="social">
+        <ul>
+          <li><iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.transmissionzero.co.uk%2Fcomputing%2Fusing-glut-with-mingw%2F&amp;send=false&amp;layout=button_count&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;width=100&amp;height=21" scrolling="no" width="100" height="21" frameborder="0"></iframe></li>
+          <li><iframe src="Using%20freeglut%20or%20GLUT%20with%20MinGW_files/tweet_button.htm" scrolling="no" width="100" height="21" frameborder="0"></iframe></li>
+          <li><a href="http://www.transmissionzero.co.uk/newsfeed.atom" type="application/atom+xml" title="Transmission Zero’s News Feed"><img src="Using%20freeglut%20or%20GLUT%20with%20MinGW_files/feed.png" alt="[Syndication]" /></a></li>
+        </ul>
+      </aside>
+      <footer class="copyright"><p><small>©2001–2016 Transmission Zero. All rights reserved. <a href="http://www.transmissionzero.co.uk/privacy/">Privacy &amp; Cookies</a>.</small></p></footer>
+    </article>
+  </body>
+</html>

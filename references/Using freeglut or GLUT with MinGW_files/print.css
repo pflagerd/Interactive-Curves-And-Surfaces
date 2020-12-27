@@ -1,0 +1,140 @@
+/* Default Namespace. */
+@namespace url("http://www.w3.org/1999/xhtml");
+
+
+/* HTML 5 elements for older IE versions. */
+header, hgroup, section, article, aside, nav, figure, figcaption
+{
+  display: block;
+}
+
+
+/* Items which shouldn't be printed. */
+#heading h1, #navigation, aside.social, aside.related, hr.separator, form, caption
+{
+  display: none;
+}
+
+
+/* Page Content. */
+body
+{
+  font-family: "Times New Roman", "Nimbus Roman No9 L", serif;
+  font-size: 12pt;
+}
+
+h2, h3, h4
+{
+  page-break-after: avoid;
+}
+
+h2
+{
+  text-align: center;
+  text-decoration: underline;
+}
+
+h3
+{
+  font-size: 1.1em;
+  border-bottom: 1px solid;
+}
+
+h4
+{
+  font-size: 1em;
+  text-decoration: underline;
+}
+
+figure
+{
+  text-align: center;
+}
+
+p.embedded
+{
+  display: none;
+}
+
+blockquote, pre
+{
+  margin: 1em 3%;
+  padding: 0 1.5%;
+  border: 1px dotted #000000;
+}
+
+p, pre, blockquote, table, tr, ol, ul, li
+{
+  page-break-inside: avoid;
+}
+
+p
+{
+  margin: 1em 0;
+  text-align: justify;
+}
+
+table, pre
+{
+  font-size: 12pt;
+  width: 96%;
+  margin: 1em 2%;
+}
+
+pre
+{
+  padding: 0.5em;
+  border: 1px dotted #000000;
+  white-space: pre-wrap;
+}
+
+th, td
+{
+  border: 1px solid #000000;
+}
+
+tbody th
+{
+  text-align: left;
+}
+
+abbr
+{
+  border: 0;
+}
+
+a
+{
+  color: #000000;
+  text-decoration: none;
+}
+
+pre, code, kbd, samp
+{
+  font-family: "Courier New", "Bitstream Vera Sans Mono", monospace;
+  font-size: 10pt;
+}
+
+pre samp kbd
+{
+  font-weight: bolder;
+}
+
+
+/* Extra visual aids. */
+a[href^="http://"]:after
+{
+  content: " (" attr(href) ")";
+  font-size: 10pt;
+}
+
+abbr[title]:after
+{
+  content: " (" attr(title) ")";
+  font-size: 10pt;
+}
+
+article.feeditem h3.feeditem-subject time:after
+{
+  content: ":";
+}

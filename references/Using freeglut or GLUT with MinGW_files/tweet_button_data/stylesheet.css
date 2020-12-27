@@ -1,0 +1,57 @@
+/* stylesheet.css - v.6.8.4a1 - e� */
+/* general purpose styles */
+body {margin:1px auto 0 auto; text-align:center; padding:0px 0px 0px 0px; margin:1px auto 0 auto; background-color:#ffffff; }
+table {border:0px none #000000; border-collapse:collapse; width:600px; padding:0px 0px 0px 0px; margin:0px 0px 0px 0px; background-color:#ffffff; word-wrap: break-word; /* IE */ }
+table td {font-family:Verdana, Helvetica, Arial, sans-serif; font-size:12px; color:#000000; border-spacing:0px 0px; padding:0px 0px 0px 0px; margin:0px 0px 0px 0px; }
+a {color:#1d5995; text-decoration:none; }
+a:hover {color:#aa0828; text-decoration:underline; }
+b {font-size:12px; font-weight:bold; color:#1d5995; }
+hr {border-top:1px solid #155585; border-bottom:1px solid #155585; }
+img {border:0px none; }
+/* highlighted color of the category that was blocked when a site is in multiple categories */
+.blockedCategory {color:#aa0828; }
+/* Outer table-Container for all content */
+.outerTable { overflow:hidden;  width:600px; border:0px none #111111; padding:0px 0px 0px 0px; margin:0px auto 0 auto; background-color:transparent; }
+.outerData {}
+/* printHead() styles */
+.printHeadTable {}
+.printHeadData {}
+/* printBlockRes() styles */
+.printBlockResTable {}
+.printBlockResData {padding:5px 5px 8px 5px; font-size:12px; font-weight:bold; color:#FFFFFF; }
+/* printBlockDesc() styles */
+.printBlockDescTable {}
+.printBlockDescData {padding:5px 10px 5px 10px; }
+/* printInfo() styles */
+.printInfoTable {}
+.printInfoData {padding:0px 15px 0px 15px; height:16px; }
+/* printOptions() styles */
+.printOptionsTable {}
+.printOptionsData {padding:0px 15px 0px 15px; height:16px; }
+/* printPolicy() styles */
+.printPolicyTable {}
+.printPolicyHeading {padding:2px 2px 2px 2px; font-size:12px; color:#aa0828; font-weight:bold; text-align:center; }
+.printPolicyData {padding:4px 4px 4px 4px; font-size:9px; color:#47484A; text-align:justify; }
+/* printCACert() styles */
+.printCACertTable {}
+.printCACertData {padding:0px 5px 0px 0px; text-align:right; }
+/* printAction() styles */
+.printActionTable {}
+.printActionData {padding:5px 10px 5px 10px; }
+.actionTitle {font-size:14px; font-weight:bold; color:#aa0828; }
+/* style for the helpdesk information text */
+.printHelpDeskData {height:32px; font-size:11px; font-weight:bold; text-align:center; color:#ffffff; }
+/* printFoot() styles */
+.printFootTable {background-color:transparent; }
+.printFootData {padding:2px 2px 2px 2px; font-size:9px; font-style:italic; text-align:right; color:#303030; background-color:transparent; }
+/* style for displaying the reputation color bar. These must be ordered in this sequence */
+.printReputationTable {width:500px; }
+.Trusted {background-color:#32CD32; color:#32CD32; }
+.Neutral {background-color:#1fc0ff; color:#1fc0ff; }
+.Unverified {background-color:#A9A9A9; color:#A9A9A9; }
+.Suspicious {background-color:yellow; color:yellow; }
+.Malicious {background-color:red; color:red; }
+.printReputationData {padding:0px; font-family:Verdana, Helvetica, Arial, sans-serif; text-align:center; font-size:9px; height:10px; width:80px; }
+.printReputationCell {border:0px none black; color:#606060; }
+.printReputationCellSelected {border:1px solid black; color:#000000; font-weight:bold; }
+/*EOF*/

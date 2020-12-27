@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="lesson.css" media="screen" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js" integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "\\[", right: "\\]", display: true},
+                    {left: "$", right: "$", display: false},
+                    {left: "\\(", right: "\\)", display: false}
+                ]
+            });
+        });
+    </script>
+    <title>Lesson 2</title>
+</head>
+<body>
+<h1>Coordinate Systems</h1>
+You may have recognized that our origin equation, $y = 3x + 4$, is the equation of a line.
+
+<p>Perhaps you also noticed that it has the form $y = mx + c$</p>
+
+<p>You may have also already know that the equation $y = mx + c$ is often called <b><i>the slope-intercept form </i></b>of the equation of a line.</p>
+
+<p>You may also know that to represent a line as graph usually involves a coordinate system.</p>
+
+<p>The coordinate system shows you which way positive values of $x$ increase, and which way positive values of $y$ increase.</p>
+
+<p>They also show where the starting value of $x$ and the starting value of $y$ is located.</p>
+
+<p>The starting value of $x$ is usually 0 and $y$ is usually 0, and is called the <b><i>origin</i></b>.</p>
+
+<p>They usually also indicate how to measure distance along $x$ and $y$. Little perpendicular line segments are drawn associated with some number and unit.</p>
+
+<p>This makes it possible to draw a point on the graph by referring to its location as a pair of numbers, one for the x location of the point, and one for the y location of the point.</p>
+
+<p>Such pairs of numbers are usually written like this: $(x, y)$</p>
+
+<p>ASSIGNMENT: Your assignment is to add a coordinate system to your line graph, using JGlut, similar to the one shown.</p>
+
+<p>The coordinate system shall be centered in the window, and shall scale at the same rate both horizontally and vertically.</p>
+
+<p>The coordinate system shall indicate its horizontal and vertical scale, which shall be identical, both with little perpendicular line segments, and with numeric values</p>
+
+<img style="height=10vmax; width = 30vmax; display: block; margin-left: auto; margin-right: auto;" src="images/Screenshot_20190714_213452.png"/>
+</body>
+</html>

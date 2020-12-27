@@ -1,0 +1,2053 @@
+<!DOCTYPE html>
+<html itemscope="" itemtype="http://schema.org/QAPage"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<title>c - OpenGL NURBS surface - Stack Overflow</title>
+    <link rel="shortcut icon" href="https://cdn.sstatic.net/Sites/stackoverflow/img/favicon.ico?v=4f32ecc8f43d">
+    <link rel="apple-touch-icon image_src" href="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+    <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="https://stackoverflow.com/opensearch.xml">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
+        <meta name="twitter:domain" content="stackoverflow.com">
+
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon@2.png?v=73d79a89bded">
+    <meta name="twitter:title" property="og:title" itemprop="title name" content="OpenGL NURBS surface">
+    <meta name="twitter:description" property="og:description" itemprop="description" content="I'm learning OpenGL and I want to get a surface with a slight hump in the middle. I'm currently using this code and im not sure how to adjust the ctrl points to make it the way i want. Its currentl...">
+    <meta property="og:url" content="https://stackoverflow.com/questions/13500458/opengl-nurbs-surface">
+    <link rel="canonical" href="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/opengl-nurbs-surface_002.htm">
+
+    
+    
+    <script type="text/javascript" async="" src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/ados.js"></script><script async="" src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/quant.js"></script><script async="" src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/beacon.js"></script><script async="" src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/analytics.js"></script><script type="text/javascript" async="" src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/ados_002.js"></script><script src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/jquery.js"></script>
+    <script src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/stub.js"></script>
+    <link rel="stylesheet" type="text/css" href="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/all.css">
+
+            <link rel="alternate" type="application/atom+xml" title="Feed for question 'OpenGL NURBS surface'" href="https://stackoverflow.com/feeds/question/13500458">
+            <meta name="twitter:app:country" content="US">
+            <meta name="twitter:app:name:iphone" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:iphone" content="871299723">
+            <meta name="twitter:app:url:iphone" content="se-zaphod://stackoverflow.com/questions/13500458/opengl-nurbs-surface">
+            <meta name="twitter:app:name:ipad" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:ipad" content="871299723">
+            <meta name="twitter:app:url:ipad" content="se-zaphod://stackoverflow.com/questions/13500458/opengl-nurbs-surface">
+            <meta name="twitter:app:name:googleplay" content="Stack Exchange Android">
+            <meta name="twitter:app:url:googleplay" content="http://stackoverflow.com/questions/13500458/opengl-nurbs-surface">
+            <meta name="twitter:app:id:googleplay" content="com.stackexchange.marvin">
+        <script>
+        
+            StackExchange.ready(function () {
+                                    
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.initSnippetRenderer();
+                    });
+                    
+
+                StackExchange.using("postValidation", function () {
+                    StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+                });
+
+                
+                StackExchange.question.init({votesCast:[],autoShowCommentHelp:true,showAnswerHelp:true,totalCommentCount:3,shownCommentCount:3,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:13500458});
+
+                styleCode();
+
+                    StackExchange.realtime.subscribeToQuestion('1', '13500458');
+                                                                    StackExchange.using("gps", function () { StackExchange.gps.trackOutboundClicks('#content', '.post-text', true); });
+
+            });
+        </script>
+
+
+    <script>
+        StackExchange.ready(function () {
+                        StackExchange.realtime.init('wss://qa.sockets.stackexchange.com');
+            StackExchange.realtime.subscribeToReputationNotifications('1');
+                StackExchange.realtime.subscribeToTopBarNotifications('1');
+        });
+    </script>
+    <script>
+        StackExchange.init({"locale":"en","stackAuthUrl":"https://stackauth.com","networkMetaHostname":"meta.stackexchange.com","serverTime":1497225688,"routeName":"Questions/Show","site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdchgIAAAAAAJwGpIzRQSOFaO0pU6s44Xt8aTwc","recaptchaAudioLang":"en","enableNewTagCreationWarning":true,"insertSpaceAfterNameTabCompletion":false,"id":1,"enableInsertDocLinkDialog":true,"childUrl":"https://meta.stackoverflow.com","enableSocialMediaInSharePopup":true,"protocol":"https"},"user":{"fkey":"e3865fa2c116ff77d74d42880b27a6cc","rep":42,"isRegistered":true,"userType":3,"userId":314786,"accountId":121589,"gravatar":"<div class=\"gravatar-wrapper-32\"><img src=\"https://i.stack.imgur.com/WX5y9.png?s=32&amp;g=1\" alt=\"\" width=\"32\" height=\"32\"></div>","profileUrl":"https://stackoverflow.com/users/314786/dan-dare","canSeeDeletedPosts":false,"canSeeNewHeaderDesign":true,"ab":{"devstory_timeline_exp":{"v":"new_add_item_interaction","g":2},"devstory_onboarding_exp":{"v":"subscribe_to_match_emails","g":1}}},"realtime":{"newest":false,"active":false,"tagged":true,"staleDisconnectIntervalInHours":0,"workerIframeDomain":"https://cdn.sstatic.net"},"events":{"postType":{"question":1},"postEditionSection":{"title":1,"body":2,"tags":3}},"story":{"minCompleteBodyLength":75,"likedTagsMaxLength":300,"dislikedTagsMaxLength":300}}, {"site":{"allowImageUploads":true,"enableUserHovercards":true,"styleCode":true,"enableNewLinkInsertDialog":true,"enableImgurHttps":true,"forceHttpsImages":true},"comments":{},"userProfile":{"openGraphAPIKey":"58740831ad23540e00c58987"},"tags":{},"accounts":{"currentPasswordRequiredForChangingStackIdPassword":true},"flags":{"allowRetractingFlags":true},"snippets":{"snippetsEnabled":true,"renderDomain":"stacksnippets.net"},"markdown":{"asteriskIntraWordEmphasis":true},"monitoring":{"clientTimingsAbsoluteTimeout":30000,"clientTimingsDebounceTimeout":1000}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"28f84aeaeedf","js/moderator.en.js":"278559024c1d","js/full-anon.en.js":"4efd1bc185ca","js/full.en.js":"80b158c49ee5","js/wmd.en.js":"d2beb9061b73","js/third-party/jquery.autocomplete.min.js":"d3b8fa7fdf74","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"ba2685451c38","js/help.en.js":"a56fdf9b9ff2","js/tageditor.en.js":"8c8d95583787","js/tageditornew.en.js":"975b734c34de","js/inline-tag-editing.en.js":"ff9d6e1cd996","js/revisions.en.js":"47de10a8358f","js/review.en.js":"c5385cc3963b","js/tagsuggestions.en.js":"b278f9a0b23b","js/post-validation.en.js":"d367adf99e99","js/explore-qlist.en.js":"e71f14781288","js/events.en.js":"f140dc959895","js/keyboard-shortcuts.en.js":"7be523c1b948","js/external-editor.en.js":"6a457b30531d","js/adops.en.js":"9a6a7812a212","js/external-editor.en.js":"6a457b30531d","js/snippet-javascript.en.js":"a2935e2a1a88","js/snippet-javascript-codemirror.en.js":"209703405674"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script>
+    
+    <noscript id="noscript-css"><style type="text/css">body,.so-header{margin-top:1.9em}</style></noscript>
+<script async="" src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/full.js"></script><script async="" src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/snippet-javascript.js"></script><script async="" src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/post-validation.js"></script><script async="" src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/prettify-full.js"></script><script async="" src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/external-editor.js"></script><script async="" src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/wmd.js"></script><style type="text/css"> .wmd-snippet-button span { background-position: 0 0; } .wmd-snippet-button:hover span { background-position: 0 -40px; }</style><script type="text/javascript" src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/adFeedback.js"></script><link rel="stylesheet" href="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/adFeedback.css"><link rel="stylesheet" href="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/jobs-multi-badges.css" type="text/css"></head>
+<body class="question-page new-topbar">
+            <script>(function () { var old = $.fn.contents; $.fn.contents = function () { try { return old.apply(this, arguments); } catch (e) { return $([]); } } })()</script>
+        
+
+    <div id="notify-container"></div>
+    <div id="custom-header"></div>
+
+
+<header class="so-header js-so-header _fixed _scrolling">
+    <div class="-container">
+        <div class="-main">            
+            <a href="https://stackoverflow.com/" class="-logo js-gps-track _glyph" data-gps-track="top_nav.click({is_current:false, location:2, destination:8})">
+
+                <span class="-img">Stack Overflow</span>
+            </a>
+
+            <nav class="navigation" role="navigation" aria-label="site navigation">
+                <ol class="-list">
+                        <li class="-item _current">
+        <a id="nav-questions" href="https://stackoverflow.com/questions" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:true, location:2, destination:1})">Questions</a>
+    </li>
+
+    <li class="-item">
+        <a id="nav-jobs" href="https://stackoverflow.com/jobs?med=site-ui&amp;ref=jobs-tab" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:6})">Jobs</a>
+    </li>
+                        <li class="-item">
+        <a id="nav-docs" href="https://stackoverflow.com/documentation" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:7})">Documentation <small class="beta-badge">beta</small></a>
+    </li>
+                        <li class="-item">
+        <a id="nav-tags" href="https://stackoverflow.com/tags" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:2})">Tags</a>
+    </li>
+
+                        <li class="-item">
+        <a id="nav-users" href="https://stackoverflow.com/users" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:3})">Users</a>
+    </li>
+
+                </ol>
+            </nav>
+
+                <form id="search" action="/search" method="get" class="searchbar" autocomplete="off" role="search">
+                    <svg role="icon" class="svg-icon iconSearch" width="18" height="18" viewBox="0 0 18 18"><path d="M12.864 11.321L18 16.5 16.5 18l-5.178-5.136v-.357a7 7 0 1 1 1.186-1.186h.356zM7 12A5 5 0 1 0 7 2a5 5 0 0 0 0 10z"></path></svg>
+                    <input name="q" placeholder="Search..." tabindex="1" autocomplete="off" maxlength="240" class="f-input js-search-field" type="text">
+                    <button type="submit" class="btn js-search-submit">
+                        <svg role="icon" class="svg-icon iconSearch" width="18" height="18" viewBox="0 0 18 18"><path d="M12.864 11.321L18 16.5 16.5 18l-5.178-5.136v-.357a7 7 0 1 1 1.186-1.186h.356zM7 12A5 5 0 1 0 7 2a5 5 0 0 0 0 10z"></path></svg>
+                    </button>
+                </form>
+
+        </div>
+        
+
+
+    
+
+<div class="-actions">
+        <a href="https://stackoverflow.com/users/314786/dan-dare" class="my-profile js-gps-track" data-gps-track="profile_summary.click()">
+            <div class="gravatar-wrapper-24" title="Dan Dare"><img src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/WX5y9.png" alt="" class="-avatar js-avatar-me" width="24" height="24"></div>
+            
+
+            <div class="-rep js-header-rep" title="your reputation: 42">42</div>
+
+                <div class="-badges">
+                    <span title="5 bronze badges"><span class="badge3">●</span><span class="badgecount">5</span></span>
+                </div>
+        </a>
+    <nav class="secondary-nav">
+        <div class="-dialog-container js-topbar-dialog-corral">
+
+
+    <div class="topbar-dialog siteSwitcher-dialog dno">
+        <div class="header">
+            <h3><a href="https://stackoverflow.com/">current community</a>
+            </h3>
+        </div>
+        <div class="modal-content current-site-container">
+            <ul class="current-site">
+                    <li>
+                            <div class="related-links">
+            <a href="https://stackoverflow.com/help" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:14 })">help</a>
+                    <a href="https://chat.stackoverflow.com/" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:6 })">chat</a>
+                    <a href="https://stackoverflow.com/users/logout" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:8 })">log out</a>
+    </div>
+
+    <a href="https://stackoverflow.com/" class="current-site-link site-link js-gps-track" data-id="1" data-gps-track="site_switcher.click({ item_type:3 })">
+        <div class="site-icon favicon favicon-stackoverflow" title="Stack Overflow"></div>
+        Stack Overflow
+    </a>
+
+                    </li>
+                    <li class="related-site">
+                            <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                        
+    <a href="https://meta.stackoverflow.com/" class="site-link js-gps-track" data-id="552" data-gps-track="site.switch({ target_site:552, item_type:3 }),site_switcher.click({ item_type:4 })">
+        <div class="site-icon favicon favicon-stackoverflowmeta" title="Meta Stack Overflow"></div>
+        Meta Stack Overflow
+    </a>
+
+                    </li>
+            </ul>
+        </div>
+
+        <div class="header" id="your-communities-header">
+            <h3>
+                    <a href="https://stackexchange.com/users/121589/?tab=accounts">your communities</a>
+            </h3>
+
+                <a href="#" id="edit-pinned-sites">edit</a>
+                <a href="#" id="cancel-pinned-sites" style="display: none;">cancel</a>
+        </div>
+        <div class="modal-content" id="your-communities-section">
+
+                <ul class="my-sites">
+                        <li>
+                            
+    <a href="https://stackoverflow.com/" class="site-link js-gps-track" data-id="1" data-gps-track="site.switch({ target_site:1, item_type:3 }),site_switcher.click({ item_type:1 })">
+        <div class="site-icon favicon favicon-stackoverflow" title="Stack Overflow"></div>
+        Stack Overflow
+            <span class="rep-score">42</span>
+    </a>
+
+                        </li>
+                        <li>
+                            
+    <a href="https://math.stackexchange.com/" class="site-link js-gps-track" data-id="69" data-gps-track="site.switch({ target_site:69, item_type:3 }),site_switcher.click({ item_type:1 })">
+        <div class="site-icon favicon favicon-math" title="Mathematics"></div>
+        Mathematics
+            <span class="rep-score">1</span>
+    </a>
+
+                        </li>
+                </ul>
+                    <div class="pinned-site-editor-container" style="display: none;">
+                        <input id="js-site-search-txt" class="site-filter-input" placeholder="Add a Stack Exchange community" type="text">
+                        <input id="pin-site-btn" value="Add" disabled="disabled" type="submit">
+                        <ul class="js-found-sites found-sites"></ul>
+                        <ul class="pinned-site-list sortable" data-custom-list="False">
+                        </ul>
+                        <input value="Save" id="save-pinned-sites-btn" disabled="disabled" type="submit">
+                        <a href="#" id="reset-pinned-sites">reset to default list</a>
+                    </div>
+        </div>
+
+        <div class="header">
+            <h3><a href="https://stackexchange.com/sites">more stack exchange communities</a>
+            </h3>
+            <a href="https://stackoverflow.blog/" class="fr">company blog</a>
+        </div>
+        <div class="modal-content">
+                <div class="child-content"></div>
+        </div>        
+    </div>
+                <div class="topbar-dialog help-dialog js-help-dialog dno">
+        <div class="modal-content">
+            <ul>
+                                    <li>
+                        <a href="https://stackoverflow.com/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })">
+                            Tour
+                            <span class="item-summary">
+                                Start here for a quick overview of the site
+                            </span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="https://stackoverflow.com/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })">
+                        Help Center
+                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+                    </a>
+                </li>
+                        <li>
+                            <a href="https://meta.stackoverflow.com/" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })">
+                                Meta
+                                <span class="item-summary">
+                                    Discuss the workings and policies of this site
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://stackoverflow.com/company/about" class="js-gps-track" data-gps-track="help_popup.click({ item_type:6 })">
+                                About Us
+                                <span class="item-summary">
+                                    Learn more about Stack Overflow the company
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.stackoverflowbusiness.com/?ref=topbar_help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:7 })">
+                                Business
+                                <span class="item-summary">
+                                    Learn more about hiring developers or posting ads with us
+                                </span>
+                            </a>
+                        </li>
+            </ul>
+        </div>
+    </div>
+
+        </div>
+        <ol class="-list">
+    <li class="-item">
+        <a href="#" class="-link js-inbox-button" title="Recent inbox messages">
+            <svg role="icon" class="svg-icon iconInbox" width="20" height="18" viewBox="0 0 20 18"><path d="M15.19 1H4.63a1.92 1.92 0 0 0-1.85 1.35L0 10.79V15a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4.21l-2.87-8.44A2 2 0 0 0 15.19 1zm-.28 10l-2 2h-6l-2-2H1.96L4.4 3.68A1 1 0 0 1 5.35 3h9.12a1 1 0 0 1 .95.68L17.86 11h-2.95z"></path></svg>
+            <span class="indicator-badge js-unread-count _important" style="display: none;"></span>
+        </a>
+    </li>
+    <li class="-item">
+        <a href="#" class="-link js-achievements-button" title="Recent achievements: reputation, badges, and privileges earned" data-unread-class="_highlighted-positive">
+            <svg role="icon" class="svg-icon iconAchievements" width="18" height="18" viewBox="0 0 18 18"><path d="M15 2V1H3v1H0v4c0 1.6 1.4 3 3 3v1c.4 1.5 3 2.6 5 3v2H5s-1 1.5-1 2h10c0-.4-1-2-1-2h-3v-2c2-.4 4.6-1.5 5-3V9c1.6-.2 3-1.4 3-3V2h-3zM3 7c-.5 0-1-.5-1-1V4h1v3zm8.4 2.5L9 8 6.6 9.4l1-2.7L5 5h3l1-2.7L10 5h2.8l-2.3 1.8 1 2.7h-.1zM16 6c0 .5-.5 1-1 1V4h1v2z"></path></svg>
+            <span class="indicator-badge js-unread-count _positive" style="display: none;"></span>
+        </a>
+    </li>
+
+
+    <li class="-item"><a href="#" class="-link js-help-button" title="Help Center and other resources">
+        <svg role="icon" class="svg-icon iconHelp" width="18" height="18" viewBox="0 0 18 18"><path d="M9 1a8 8 0 1 0 0 16.001A8 8 0 0 0 9 1zm.812 12.126c-.02.716-.55 1.157-1.238 1.137-.659-.02-1.177-.49-1.157-1.209.02-.715.566-1.17 1.225-1.15.691.021 1.194.507 1.17 1.222zm1.956-5.114c-.168.237-.546.542-1.02.912l-.527.361c-.257.197-.417.43-.502.695-.044.141-.076.507-.084.752-.004.048-.032.156-.181.156H7.883c-.165 0-.185-.096-.18-.144.023-.667.12-1.218.397-1.66.374-.594 1.426-1.221 1.426-1.221.161-.12.286-.25.382-.39.177-.24.321-.51.321-.8 0-.333-.08-.65-.293-.915-.249-.31-.518-.458-1.036-.458-.51 0-.808.257-1.021.594-.213.338-.177.735-.177 1.097H5.746c0-1.366.357-2.238 1.112-2.752.51-.35 1.162-.502 1.921-.502.996 0 1.788.184 2.487.715.647.49.988 1.181.988 2.113 0 .575-.2 1.057-.486 1.447z"></path></svg>
+    </a></li>
+                <li class="-item">
+        <a href="https://stackexchange.com/" class="-link js-site-switcher-button js-gps-track" data-gps-track="site_switcher.show" title="A list of all 168 Stack Exchange sites">
+            <svg role="icon" class="svg-icon iconStackExchange" width="18" height="18" viewBox="0 0 18 18"><path d="M1 13a2 2 0 0 0 2 2h8v3l3-3h1a2 2 0 0 0 2-2v-2H1v2zM15 1H3a2 2 0 0 0-2 2v2h16V3a2 2 0 0 0-2-2zM1 6h16v4H1V6z"></path></svg>
+        </a>
+    </li>
+
+
+        </ol>
+    </nav>
+</div>
+    </div>
+</header>
+
+    <script>
+        StackExchange.ready(function () { StackExchange.topbar.init(); });
+            StackExchange.scrollPadding.setPaddingTop(60, 10);     </script>
+
+    <div class="container">
+        
+
+
+        <div id="content" class="snippet-hidden">
+
+
+
+            
+
+<div itemscope="" itemtype="http://schema.org/Question">
+    <link itemprop="image" href="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+			<div id="question-header">
+                <h1 itemprop="name"><a href="https://stackoverflow.com/questions/13500458/opengl-nurbs-surface" class="question-hyperlink">OpenGL NURBS surface</a></h1>
+
+            
+<div class="aside-cta" role="navigation" aria-label="ask new question">
+    <a href="https://stackoverflow.com/questions/ask" class="btn">Ask Question</a>
+</div>
+		</div>
+			<div id="mainbar" role="main" aria-label="question and answers">
+
+			
+
+<div class="question" data-questionid="13500458" id="question">
+
+    <script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk1179069669",4).setZone(43); });
+            </script>
+            <div class="everyonelovesstackoverflow adzerk-vote" id="adzerk1179069669"><a href="https://engine.adzerk.net/r?e=eyJhdiI6NDIxMCwiYXQiOjQsImJ0IjowLCJjbSI6NTgxMzk5LCJjaCI6MTE3OCwiY2siOnt9LCJjciI6MjkzOTI5OCwiZGkiOiJiZmQ5ZmUxYjVmNDI0MDIzYTg4MmNiMDMzZGY3NGU4ZiIsImRtIjoxLCJmYyI6NDk4NjQyOSwiZmwiOjUxMzAxMDMsImlwIjoiMTMwLjc2Ljk2LjE1NyIsImt3IjoiYyxvcGVuZ2wsYmV6aWVyLG51cmJzLHgtdXNlci1yZWdpc3RlcmVkLHgtaW5kdXN0cnktbWFudWZhY3R1cmluZyx4LWxhcmdlLWNvbXBhbnkseC1jcm9zcy1zaXRlLXNlcnZlcmZhdWx0LmNvbSIsIm1rIjoib3BlbmdsIiwibnciOjIyLCJwYyI6Ny42LCJlYyI6Ny42LCJwciI6NzY1LCJydCI6MiwicmYiOiJodHRwczovL3d3dy5nb29nbGUuY29tLyIsInNhIjoiMyIsInNiIjoiaS0wZGNmYzliMjQ5M2NlNmVhOSIsInNwIjozMTIzMywic3QiOjgyNzcsInVrIjoidWUxLWI1YmU0Yzc1YTRiOTQ2YTQ4YmNiMDlhMzU4NWVmZTI4Iiwiem4iOjQzLCJ0cyI6MTQ5NzIyNTY4OTcwNSwiYmYiOnRydWUsInBuIjoiYWR6ZXJrMTE3OTA2OTY2OSIsInVyIjoiaHR0cHM6Ly9zb2Z0d2FyZS5pbnRlbC5jb20vZW4tdXMvZ3BhP3V0bV9jYW1wYWlnbj1jbWRfMTE3MTctMl8yMDE3JTIwaW50ZWwlMjBkcGQlMjB0ZWMmdXRtX3NvdXJjZT1TdGFja092ZXJmbG93JnV0bV9tZWRpdW09QmFubmVyJnV0bV9jb250ZW50PURyYWdvbl9ST1NfNzI4eDkwIn0&amp;s=7hxOfQPKvwSe3i-QMEGc1N-cVVY" rel="nofollow" target="_blank" title=""><img src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/67acd60a419a4188a9ffa36ec8c7b364.jpg" title="" alt="" width="728" border="0" height="90"></a><div class="adzerk-vote-controls" style="display:none;"><div class="adzerk-vote-option adzerk-vote-up"><div class="adzerk-vote-icon"></div></div><div class="adzerk-vote-option adzerk-vote-down"><div class="adzerk-vote-icon"></div></div></div><div class="adzerk-vote-survey" style="display:none;"><form><span>No problem. We won't show you that ad again. Why didn't you like it?</span><ul><li><label><input value="12" name="downvoteReason" type="radio">Uninteresting</label></li><li><label><input value="13" name="downvoteReason" type="radio">Misleading</label></li><li><label><input value="14" name="downvoteReason" type="radio">Offensive</label></li><li><label><input value="15" name="downvoteReason" type="radio">Repetitive</label></li><li><label><input value="16" name="downvoteReason" type="radio">Other</label></li></ul><a href="#" class="adzerk-vote-cancel">Oops! I didn't mean to do this.</a></form></div><img style="position:absolute;" src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/i_002.gif" width="0px" border="0" height="0px"></div>    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="13500458" type="hidden">
+        <a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">7</span>
+        <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+
+        <a class="star-off" href="#" title="Click to mark as favorite question (click again to undo)">favorite</a>
+        <div class="favoritecount"><b>4</b></div>
+
+
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="text">
+
+<p>I'm learning OpenGL and I want to get a surface with a slight hump in
+ the middle. I'm currently using this code and im not sure how to adjust
+ the ctrl points to make it the way i want. Its currently like </p>
+
+<p><img src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/MNg0o.png" alt="enter image description here"></p>
+
+<p>and i would like to have it like this: </p>
+
+<p><img src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/ABgar.png" alt="enter image description here"></p>
+
+<p>im not entirely sure what control points i should use and i'm confused on how it works. </p>
+
+<pre class="lang-c prettyprint prettyprinted" style=""><code><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;stdlib.h&gt;</span><span class="pln">
+</span><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;GLUT/glut.h&gt;</span><span class="pln">
+
+</span><span class="typ">GLfloat</span><span class="pln"> ctrlpoints</span><span class="pun">[</span><span class="lit">4</span><span class="pun">][</span><span class="lit">4</span><span class="pun">][</span><span class="lit">3</span><span class="pun">]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+   </span><span class="pun">{{-</span><span class="lit">1.5</span><span class="pun">,</span><span class="pln"> </span><span class="pun">-</span><span class="lit">1.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">4.0</span><span class="pun">},</span><span class="pln"> </span><span class="pun">{-</span><span class="lit">0.5</span><span class="pun">,</span><span class="pln"> </span><span class="pun">-</span><span class="lit">1.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2.0</span><span class="pun">},</span><span class="pln"> 
+    </span><span class="pun">{</span><span class="lit">0.5</span><span class="pun">,</span><span class="pln"> </span><span class="pun">-</span><span class="lit">1.5</span><span class="pun">,</span><span class="pln"> </span><span class="pun">-</span><span class="lit">1.0</span><span class="pun">},</span><span class="pln"> </span><span class="pun">{</span><span class="lit">1.5</span><span class="pun">,</span><span class="pln"> </span><span class="pun">-</span><span class="lit">1.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2.0</span><span class="pun">}},</span><span class="pln"> 
+   </span><span class="pun">{{-</span><span class="lit">1.5</span><span class="pun">,</span><span class="pln"> </span><span class="pun">-</span><span class="lit">0.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.0</span><span class="pun">},</span><span class="pln"> </span><span class="pun">{-</span><span class="lit">0.5</span><span class="pun">,</span><span class="pln"> </span><span class="pun">-</span><span class="lit">0.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">3.0</span><span class="pun">},</span><span class="pln"> 
+    </span><span class="pun">{</span><span class="lit">0.5</span><span class="pun">,</span><span class="pln"> </span><span class="pun">-</span><span class="lit">0.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0.0</span><span class="pun">},</span><span class="pln"> </span><span class="pun">{</span><span class="lit">1.5</span><span class="pun">,</span><span class="pln"> </span><span class="pun">-</span><span class="lit">0.5</span><span class="pun">,</span><span class="pln"> </span><span class="pun">-</span><span class="lit">1.0</span><span class="pun">}},</span><span class="pln"> 
+   </span><span class="pun">{{-</span><span class="lit">1.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">4.0</span><span class="pun">},</span><span class="pln"> </span><span class="pun">{-</span><span class="lit">0.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0.0</span><span class="pun">},</span><span class="pln"> 
+    </span><span class="pun">{</span><span class="lit">0.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">3.0</span><span class="pun">},</span><span class="pln"> </span><span class="pun">{</span><span class="lit">1.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">4.0</span><span class="pun">}},</span><span class="pln"> 
+   </span><span class="pun">{{-</span><span class="lit">1.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.5</span><span class="pun">,</span><span class="pln"> </span><span class="pun">-</span><span class="lit">2.0</span><span class="pun">},</span><span class="pln"> </span><span class="pun">{-</span><span class="lit">0.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.5</span><span class="pun">,</span><span class="pln"> </span><span class="pun">-</span><span class="lit">2.0</span><span class="pun">},</span><span class="pln"> 
+    </span><span class="pun">{</span><span class="lit">0.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0.0</span><span class="pun">},</span><span class="pln"> </span><span class="pun">{</span><span class="lit">1.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.5</span><span class="pun">,</span><span class="pln"> </span><span class="pun">-</span><span class="lit">1.0</span><span class="pun">}}</span><span class="pln">
+</span><span class="pun">};</span><span class="pln">
+
+</span><span class="kwd">void</span><span class="pln"> display</span><span class="pun">(</span><span class="kwd">void</span><span class="pun">)</span><span class="pln">
+</span><span class="pun">{</span><span class="pln">
+   </span><span class="typ">int</span><span class="pln"> i</span><span class="pun">,</span><span class="pln"> j</span><span class="pun">;</span><span class="pln">
+
+   glClear</span><span class="pun">(</span><span class="pln">GL_COLOR_BUFFER_BIT </span><span class="pun">|</span><span class="pln"> GL_DEPTH_BUFFER_BIT</span><span class="pun">);</span><span class="pln">
+   glColor3f</span><span class="pun">(</span><span class="lit">1.0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.0</span><span class="pun">);</span><span class="pln">
+   glPushMatrix </span><span class="pun">();</span><span class="pln">
+   glRotatef</span><span class="pun">(</span><span class="lit">85.0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.0</span><span class="pun">);</span><span class="pln">
+   </span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="pln">j </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"> j </span><span class="pun">&lt;=</span><span class="pln"> </span><span class="lit">8</span><span class="pun">;</span><span class="pln"> j</span><span class="pun">++)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      glBegin</span><span class="pun">(</span><span class="pln">GL_LINE_STRIP</span><span class="pun">);</span><span class="pln">
+      </span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="pln">i </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"> i </span><span class="pun">&lt;=</span><span class="pln"> </span><span class="lit">30</span><span class="pun">;</span><span class="pln"> i</span><span class="pun">++)</span><span class="pln">
+         glEvalCoord2f</span><span class="pun">((</span><span class="typ">GLfloat</span><span class="pun">)</span><span class="pln">i</span><span class="pun">/</span><span class="lit">30.0</span><span class="pun">,</span><span class="pln"> </span><span class="pun">(</span><span class="typ">GLfloat</span><span class="pun">)</span><span class="pln">j</span><span class="pun">/</span><span class="lit">8.0</span><span class="pun">);</span><span class="pln">
+      glEnd</span><span class="pun">();</span><span class="pln">
+      glBegin</span><span class="pun">(</span><span class="pln">GL_LINE_STRIP</span><span class="pun">);</span><span class="pln">
+      </span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="pln">i </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"> i </span><span class="pun">&lt;=</span><span class="pln"> </span><span class="lit">30</span><span class="pun">;</span><span class="pln"> i</span><span class="pun">++)</span><span class="pln">
+         glEvalCoord2f</span><span class="pun">((</span><span class="typ">GLfloat</span><span class="pun">)</span><span class="pln">j</span><span class="pun">/</span><span class="lit">8.0</span><span class="pun">,</span><span class="pln"> </span><span class="pun">(</span><span class="typ">GLfloat</span><span class="pun">)</span><span class="pln">i</span><span class="pun">/</span><span class="lit">30.0</span><span class="pun">);</span><span class="pln">
+      glEnd</span><span class="pun">();</span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+   glPopMatrix </span><span class="pun">();</span><span class="pln">
+   glFlush</span><span class="pun">();</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="kwd">void</span><span class="pln"> init</span><span class="pun">(</span><span class="kwd">void</span><span class="pun">)</span><span class="pln">
+</span><span class="pun">{</span><span class="pln">
+   glClearColor </span><span class="pun">(</span><span class="lit">0.0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0.0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0.0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0.0</span><span class="pun">);</span><span class="pln">
+   glMap2f</span><span class="pun">(</span><span class="pln">GL_MAP2_VERTEX_3</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="lit">3</span><span class="pun">,</span><span class="pln"> </span><span class="lit">4</span><span class="pun">,</span><span class="pln">
+           </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="lit">12</span><span class="pun">,</span><span class="pln"> </span><span class="lit">4</span><span class="pun">,</span><span class="pln"> </span><span class="pun">&amp;</span><span class="pln">ctrlpoints</span><span class="pun">[</span><span class="lit">0</span><span class="pun">][</span><span class="lit">0</span><span class="pun">][</span><span class="lit">0</span><span class="pun">]);</span><span class="pln">
+   glEnable</span><span class="pun">(</span><span class="pln">GL_MAP2_VERTEX_3</span><span class="pun">);</span><span class="pln">
+   glMapGrid2f</span><span class="pun">(</span><span class="lit">20</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0.0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">20</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0.0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.0</span><span class="pun">);</span><span class="pln">
+   glEnable</span><span class="pun">(</span><span class="pln">GL_DEPTH_TEST</span><span class="pun">);</span><span class="pln">
+   glShadeModel</span><span class="pun">(</span><span class="pln">GL_FLAT</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+</span><span class="kwd">void</span><span class="pln"> reshape</span><span class="pun">(</span><span class="typ">int</span><span class="pln"> w</span><span class="pun">,</span><span class="pln"> </span><span class="typ">int</span><span class="pln"> h</span><span class="pun">)</span><span class="pln">
+</span><span class="pun">{</span><span class="pln">
+   glViewport</span><span class="pun">(</span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="pun">(</span><span class="typ">GLsizei</span><span class="pun">)</span><span class="pln"> w</span><span class="pun">,</span><span class="pln"> </span><span class="pun">(</span><span class="typ">GLsizei</span><span class="pun">)</span><span class="pln"> h</span><span class="pun">);</span><span class="pln">
+   glMatrixMode</span><span class="pun">(</span><span class="pln">GL_PROJECTION</span><span class="pun">);</span><span class="pln">
+   glLoadIdentity</span><span class="pun">();</span><span class="pln">
+   </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">w </span><span class="pun">&lt;=</span><span class="pln"> h</span><span class="pun">)</span><span class="pln">
+      glOrtho</span><span class="pun">(-</span><span class="lit">5.0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">5.0</span><span class="pun">,</span><span class="pln"> </span><span class="pun">-</span><span class="lit">5.0</span><span class="pun">*(</span><span class="typ">GLfloat</span><span class="pun">)</span><span class="pln">h</span><span class="pun">/(</span><span class="typ">GLfloat</span><span class="pun">)</span><span class="pln">w</span><span class="pun">,</span><span class="pln"> 
+               </span><span class="lit">5.0</span><span class="pun">*(</span><span class="typ">GLfloat</span><span class="pun">)</span><span class="pln">h</span><span class="pun">/(</span><span class="typ">GLfloat</span><span class="pun">)</span><span class="pln">w</span><span class="pun">,</span><span class="pln"> </span><span class="pun">-</span><span class="lit">5.0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">5.0</span><span class="pun">);</span><span class="pln">
+   </span><span class="kwd">else</span><span class="pln">
+      glOrtho</span><span class="pun">(-</span><span class="lit">5.0</span><span class="pun">*(</span><span class="typ">GLfloat</span><span class="pun">)</span><span class="pln">w</span><span class="pun">/(</span><span class="typ">GLfloat</span><span class="pun">)</span><span class="pln">h</span><span class="pun">,</span><span class="pln"> 
+               </span><span class="lit">5.0</span><span class="pun">*(</span><span class="typ">GLfloat</span><span class="pun">)</span><span class="pln">w</span><span class="pun">/(</span><span class="typ">GLfloat</span><span class="pun">)</span><span class="pln">h</span><span class="pun">,</span><span class="pln"> </span><span class="pun">-</span><span class="lit">5.0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">5.0</span><span class="pun">,</span><span class="pln"> </span><span class="pun">-</span><span class="lit">5.0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">5.0</span><span class="pun">);</span><span class="pln">
+   glMatrixMode</span><span class="pun">(</span><span class="pln">GL_MODELVIEW</span><span class="pun">);</span><span class="pln">
+   glLoadIdentity</span><span class="pun">();</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="typ">int</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">int</span><span class="pln"> argc</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">char</span><span class="pun">**</span><span class="pln"> argv</span><span class="pun">)</span><span class="pln">
+</span><span class="pun">{</span><span class="pln">
+   glutInit</span><span class="pun">(&amp;</span><span class="pln">argc</span><span class="pun">,</span><span class="pln"> argv</span><span class="pun">);</span><span class="pln">
+   glutInitDisplayMode </span><span class="pun">(</span><span class="pln">GLUT_SINGLE </span><span class="pun">|</span><span class="pln"> GLUT_RGB</span><span class="pun">);</span><span class="pln">
+   glutInitWindowSize </span><span class="pun">(</span><span class="lit">500</span><span class="pun">,</span><span class="pln"> </span><span class="lit">500</span><span class="pun">);</span><span class="pln">
+   glutInitWindowPosition </span><span class="pun">(</span><span class="lit">100</span><span class="pun">,</span><span class="pln"> </span><span class="lit">100</span><span class="pun">);</span><span class="pln">
+   glutCreateWindow </span><span class="pun">(</span><span class="pln">argv</span><span class="pun">[</span><span class="lit">0</span><span class="pun">]);</span><span class="pln">
+   init </span><span class="pun">();</span><span class="pln">
+   glutDisplayFunc</span><span class="pun">(</span><span class="pln">display</span><span class="pun">);</span><span class="pln">
+   glutReshapeFunc</span><span class="pun">(</span><span class="pln">reshape</span><span class="pun">);</span><span class="pln">
+   glutMainLoop</span><span class="pun">();</span><span class="pln">
+   </span><span class="kwd">return</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+    </div>
+    <div class="post-taglist">
+        <a href="https://stackoverflow.com/questions/tagged/c" class="post-tag js-gps-track" title="show questions tagged 'c'" rel="tag">c</a> <a href="https://stackoverflow.com/questions/tagged/opengl" class="post-tag js-gps-track" title="show questions tagged 'opengl'" rel="tag">opengl</a> <a href="https://stackoverflow.com/questions/tagged/bezier" class="post-tag js-gps-track" title="show questions tagged 'bezier'" rel="tag">bezier</a> <a href="https://stackoverflow.com/questions/tagged/nurbs" class="post-tag js-gps-track" title="show questions tagged 'nurbs'" rel="tag">nurbs</a> 
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="https://stackoverflow.com/q/13500458/314786" title="short permalink to this question" class="short-link" id="link-post-13500458">share</a><span class="lsep">|</span><a href="https://stackoverflow.com/posts/13500458/edit" class="suggest-edit-post" title="revise and improve this post">edit</a><span class="lsep">|</span><a href="#" class="flag-post-link" title="flag this post for serious problems or moderator attention" data-postid="13500458">flag</a></div>        
+    </td>
+    <td class="post-signature" align="right">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="https://stackoverflow.com/posts/13500458/revisions" title="show all edits to this post">edited <span title="2012-11-22 17:57:50Z" class="relativetime">Nov 22 '12 at 17:57</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="https://stackoverflow.com/users/309259/rekin"><div class="gravatar-wrapper-32"><img src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/5437bb75bf8b5d8195c1397da88abbd2.png" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="https://stackoverflow.com/users/309259/rekin">Rekin</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">5,423</span><span title="2 gold badges"><span class="badge1"></span><span class="badgecount">2</span></span><span title="16 silver badges"><span class="badge2"></span><span class="badgecount">16</span></span><span title="30 bronze badges"><span class="badge3"></span><span class="badgecount">30</span></span>
+        </div>
+    </div>
+</div>    </td>
+    <td class="post-signature owner">
+        <div class="user-info ">
+    <div class="user-action-time">
+        asked <span title="2012-11-21 19:15:11Z" class="relativetime">Nov 21 '12 at 19:15</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="https://stackoverflow.com/users/1732310/knitex"><div class="gravatar-wrapper-32"><img src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/36805b89598a7ae8b2922539d8f9cc07.png" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="https://stackoverflow.com/users/1732310/knitex">Knitex</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">100</span><span title="4 silver badges"><span class="badge2"></span><span class="badgecount">4</span></span><span title="11 bronze badges"><span class="badge3"></span><span class="badgecount">11</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</div>
+</td>
+        </tr>
+                    
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-13500458" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-18477483" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                <a class="comment-up comment-up-off" title="this comment adds something useful to the post">upvote</a>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                                <td>
+                                    <a class="comment-flag" title="Flag this comment for serious problems or moderator attention">flag</a>
+                                </td>
+                        </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">You seem heading at the right direction. Remind me of one thing: is Y-axis UP in OpenGL?</span>
+                    –&nbsp;<a href="https://stackoverflow.com/users/309259/rekin" title="5,423 reputation" class="comment-user">Rekin</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment18477483_13500458"><span title="2012-11-21 19:52:52Z" class="relativetime-clean">Nov 21 '12 at 19:52</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-18477852" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                <a class="comment-up comment-up-off" title="this comment adds something useful to the post">upvote</a>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                                <td>
+                                    <a class="comment-flag" title="Flag this comment for serious problems or moderator attention">flag</a>
+                                </td>
+                        </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">in this case im pretty sure it is</span>
+                    –&nbsp;<a href="https://stackoverflow.com/users/1732310/knitex" title="100 reputation" class="comment-user owner">Knitex</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment18477852_13500458"><span title="2012-11-21 20:07:54Z" class="relativetime-clean">Nov 21 '12 at 20:07</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-18480032" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                <a class="comment-up comment-up-off" title="this comment adds something useful to the post">upvote</a>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                                <td>
+                                    <a class="comment-flag" title="Flag this comment for serious problems or moderator attention">flag</a>
+                                </td>
+                        </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Ok, the answer is pretty much comprehensive now. If you want any more details or have any doubts I'll be glad to clear that out.</span>
+                    –&nbsp;<a href="https://stackoverflow.com/users/309259/rekin" title="5,423 reputation" class="comment-user">Rekin</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment18480032_13500458"><span title="2012-11-21 21:42:52Z" class="relativetime-clean">Nov 21 '12 at 21:42</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-13500458" data-rep="50" data-reg="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>        </tbody></table>
+</div>
+
+			<div id="answers">
+
+				<a name="tab-top"></a>
+				<div id="answers-header">
+					<div class="subheader answers-subheader">
+						<h2>
+								2 Answers
+                                <span style="display:none;" itemprop="answerCount">2</span>
+						</h2>
+						<div>
+							<div id="tabs">
+        <a href="https://stackoverflow.com/questions/13500458/opengl-nurbs-surface?answertab=active#tab-top" data-nav-xhref="" title="Answers with the latest activity first" data-value="active" data-shortcut="A">
+            active</a>
+        <a href="https://stackoverflow.com/questions/13500458/opengl-nurbs-surface?answertab=oldest#tab-top" data-nav-xhref="" title="Answers in the order they were provided" data-value="oldest" data-shortcut="O">
+            oldest</a>
+        <a class="youarehere" href="https://stackoverflow.com/questions/13500458/opengl-nurbs-surface?answertab=votes#tab-top" data-nav-xhref="" title="Answers with the highest score first" data-value="votes" data-shortcut="V">
+            votes</a>
+</div>
+						</div>
+					</div>    
+				</div>    
+
+
+
+
+  
+<a name="13501456"></a>
+<div id="answer-13501456" class="answer accepted-answer" data-answerid="13501456" itemscope="" itemtype="http://schema.org/Answer" itemprop="acceptedAnswer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="13501456" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">23</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+        <span class="vote-accepted-on load-accepted-answer-date" title="loading when this answer was accepted...">accepted</span>
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p><strong>EDIT</strong>: I thought you were experimenting, but I see the code came from <a href="http://www.glprogramming.com/red/chapter12.html" rel="noreferrer">the OpenGL tutorial</a>. I glanced through it and understand your point now. It's difficult to learn the basics from there.</p>
+
+<h2>NURBS Background</h2>
+
+<p>The best way to get a grasp with NURBS is to play with it 
+interactively. You'd then gain the intuition about the edge-defining 
+points (on the edges), shape defining ones (every other), the 
+tangent-relation between them and continuity. NURBS can be made of 
+patches, stitched together at the edges, where continuity is highly 
+controlled - namely you can ask for G3 for car's main body or C1 for a 
+cheap game model. It's really difficult to get the concept from any 
+description. It you want to get it this way, I'd highly recommend the 
+trial of <a href="http://www.rhino3d.com/" rel="noreferrer">Rhino Nurbs Modeller</a>.
+ I used it years ago and now it seems abandoned, but still it is the 
+software with one of the best NURBS support out there (Autodesk 3d 
+Studio MAX and MAYA have worse). It might be a little time consuming 
+though, for starters I'd recommend playing with something simpler; take 
+the applet from the <a href="http://www.idi.ntnu.no/%7Emlh/codebase/grafisk2/" rel="noreferrer">"Simple Bezier Curve Editor" page</a> for a spin.</p>
+
+<p>To understand NURBS it's also good to consult <a href="http://en.wikipedia.org/wiki/B%C3%A9zier_curve" rel="noreferrer">Wikipedia Article about Bezier Curves</a>.
+ Once you get a grasp of relation between point position and the final 
+curve shape you can easily generalize it to surfaces. I find this 
+animation highly intuitive:</p>
+
+<p><img src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/eumzf.gif" alt="Code Explanation"></p>
+
+<p>You can imagine the surface from your example as a set of four of 
+those curves, with a cloth spanned on them. Using the applet I linked 
+earlier, you can play with the position and get instant feedback on the 
+resulting shape. Notice the <code>t</code> parameter - it is a 
+coordinate along the curve and has a range of [0, 1]. The NURBS surface 
+have two of those coordinates, by convention called <code>u</code> and <code>v</code> (that's important for the drawing function).</p>
+
+<p>So, the <code>ctrlpoints</code> structure from the code holds all 
+point coordinates. Simplifying for explanation, those are four cubic 
+Bezier curves (the ones from the animation). For each curve you have 
+four points within 3 dimensions. If you disregard the Y-axis, then all 
+of them lie on a grid, with X and Z being: -1.5, -1.0, 1.0, 1.5. That 
+explains a total of 32 values (4x4 for X plus 4x4 for Z).</p>
+
+<p>The rest is the height, Y-values. In your case it is the second value of every point in <code>ctrlpoints</code>.
+ To get your expected result, you can make all Y values equal on the 
+edges (outer ones) and slightly raised in the middle (4 inner). You'll 
+get:</p>
+
+<p><img src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/LxF6a.png" alt="NURBS Bump Surface"></p>
+
+<p>Points used to render above image:</p>
+
+<pre class="lang-c prettyprint prettyprinted" style=""><code><span class="typ">GLfloat</span><span class="pln"> ctrlpoints</span><span class="pun">[</span><span class="lit">4</span><span class="pun">][</span><span class="lit">4</span><span class="pun">][</span><span class="lit">3</span><span class="pun">]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+ </span><span class="pun">{{-</span><span class="lit">1.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.0</span><span class="pun">,</span><span class="pln"> </span><span class="pun">-</span><span class="lit">1.5</span><span class="pun">},</span><span class="pln">  </span><span class="pun">{-</span><span class="lit">0.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.0</span><span class="pun">,-</span><span class="lit">1.5</span><span class="pln"> </span><span class="pun">},</span><span class="pln"> </span><span class="pun">{</span><span class="lit">0.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.0</span><span class="pun">,</span><span class="pln"> </span><span class="pun">-</span><span class="lit">1.5</span><span class="pln"> </span><span class="pun">},</span><span class="pln">   </span><span class="pun">{</span><span class="lit">1.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.0</span><span class="pun">,-</span><span class="lit">1.5</span><span class="pun">}},</span><span class="pln"> 
+ </span><span class="pun">{{-</span><span class="lit">1.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.0</span><span class="pun">,</span><span class="pln"> </span><span class="pun">-</span><span class="lit">0.5</span><span class="pun">},</span><span class="pln">  </span><span class="pun">{-</span><span class="lit">0.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2.0</span><span class="pun">,-</span><span class="lit">0.5</span><span class="pln"> </span><span class="pun">},</span><span class="pln"> </span><span class="pun">{</span><span class="lit">0.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2.0</span><span class="pun">,</span><span class="pln"> </span><span class="pun">-</span><span class="lit">0.5</span><span class="pln"> </span><span class="pun">},</span><span class="pln">   </span><span class="pun">{</span><span class="lit">1.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.0</span><span class="pun">,-</span><span class="lit">0.5</span><span class="pun">}},</span><span class="pln"> 
+ </span><span class="pun">{{-</span><span class="lit">1.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.0</span><span class="pun">,</span><span class="pln">  </span><span class="lit">0.5</span><span class="pun">},</span><span class="pln">  </span><span class="pun">{-</span><span class="lit">0.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2.0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0.5</span><span class="pln"> </span><span class="pun">},</span><span class="pln"> </span><span class="pun">{</span><span class="lit">0.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2.0</span><span class="pun">,</span><span class="pln">  </span><span class="lit">0.5</span><span class="pln"> </span><span class="pun">},</span><span class="pln">   </span><span class="pun">{</span><span class="lit">1.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0.5</span><span class="pun">}},</span><span class="pln"> 
+ </span><span class="pun">{{-</span><span class="lit">1.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.0</span><span class="pun">,</span><span class="pln">  </span><span class="lit">1.5</span><span class="pun">},</span><span class="pln">  </span><span class="pun">{-</span><span class="lit">0.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.5</span><span class="pln"> </span><span class="pun">},</span><span class="pln"> </span><span class="pun">{</span><span class="lit">0.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.0</span><span class="pun">,</span><span class="pln">  </span><span class="lit">1.5</span><span class="pln"> </span><span class="pun">},</span><span class="pln">   </span><span class="pun">{</span><span class="lit">1.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.5</span><span class="pun">}}</span><span class="pln">
+</span><span class="pun">};</span><span class="pln">
+</span><span class="com">//        ^                   ^                 ^                    ^</span><span class="pln">
+</span><span class="com">//        |                   |                 |                    |</span><span class="pln">
+</span><span class="com">//        |                   |                 |                    |</span><span class="pln">
+</span><span class="com">//        \_________ Those are most relevant - Y-coord, height ______/</span></code></pre>
+
+<h2>NURBS in OpenGL with GLUT - API walkthrough</h2>
+
+<p>I see OpenGL API is hiding quite relevant details. The NURBS surface is drawn using <code>Evaluator</code> and is defined with the <code>Map</code> function.</p>
+
+<p>You're supposed to define control points in the <code>init(void)</code> function, like so:</p>
+
+<pre class="lang-c prettyprint prettyprinted" style=""><code><span class="pln">glMap2f</span><span class="pun">(</span><span class="pln">GL_MAP2_VERTEX_3</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="lit">3</span><span class="pun">,</span><span class="pln"> </span><span class="lit">4</span><span class="pun">,</span><span class="pln">
+           </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="lit">12</span><span class="pun">,</span><span class="pln"> </span><span class="lit">4</span><span class="pun">,</span><span class="pln"> </span><span class="pun">&amp;</span><span class="pln">ctrlpoints</span><span class="pun">[</span><span class="lit">0</span><span class="pun">][</span><span class="lit">0</span><span class="pun">][</span><span class="lit">0</span><span class="pun">]);</span></code></pre>
+
+<p>Good explanation of the function can be found <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/ee872053%28v=vs.85%29.aspx" rel="noreferrer">on the MSDN Site for glMap2f</a>. We are passing control points, their type and the details such as array stride and order. </p>
+
+<p>You can draw it using an <code>Evaluator</code> function. It takes two coordinates as arguments and gives back a point in 3d space. Those input coordinates are exactly the <code>u</code> and <code>v</code> I mentioned earlier, under the animation. In our example:</p>
+
+<pre class="lang-c prettyprint prettyprinted" style=""><code><span class="pln">      glBegin</span><span class="pun">(</span><span class="pln">GL_LINE_STRIP</span><span class="pun">);</span><span class="pln"> </span><span class="com">// we'll draw a line</span><span class="pln">
+
+      </span><span class="com">// take 31 samples of a cross-section of the surface</span><span class="pln">
+      </span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="pln">i </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"> i </span><span class="pun">&lt;=</span><span class="pln"> </span><span class="lit">30</span><span class="pun">;</span><span class="pln"> i</span><span class="pun">++)</span><span class="pln">
+         </span><span class="com">// for each sample, evaluate a 3d point</span><span class="pln">
+         glEvalCoord2f</span><span class="pun">((</span><span class="typ">GLfloat</span><span class="pun">)</span><span class="pln">i</span><span class="pun">/</span><span class="lit">30.0</span><span class="pun">,</span><span class="pln"> </span><span class="pun">(</span><span class="typ">GLfloat</span><span class="pun">)</span><span class="pln">j</span><span class="pun">/</span><span class="lit">8.0</span><span class="pun">);</span><span class="pln">
+
+         </span><span class="com">// notice j is constant in the loop here, but</span><span class="pln">
+         </span><span class="com">// is being changed by the outer loop.</span><span class="pln">
+         </span><span class="com">//</span><span class="pln">
+         </span><span class="com">// j is iterated in 9 steps, so we'll end up</span><span class="pln">
+         </span><span class="com">// with 9 lines</span><span class="pln">
+      glEnd</span><span class="pun">();</span></code></pre>
+
+<p>I deliberately omitted the outer loop, which is described here:</p>
+
+<pre class="lang-c prettyprint prettyprinted" style=""><code><span class="pln">   </span><span class="com">// we want 9 lines</span><span class="pln">
+   </span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="pln">j </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"> j </span><span class="pun">&lt;=</span><span class="pln"> </span><span class="lit">8</span><span class="pun">;</span><span class="pln"> j</span><span class="pun">++)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="com">// OpenGL state machine will be used to draw lines</span><span class="pln">
+
+      glBegin</span><span class="pun">(</span><span class="pln">GL_LINE_STRIP</span><span class="pun">);</span><span class="pln">
+      </span><span class="com">// inner loop for j-th line along X</span><span class="pln">
+
+      glBegin</span><span class="pun">(</span><span class="pln">GL_LINE_STRIP</span><span class="pun">);</span><span class="pln">
+      </span><span class="com">// inner loop for j-th line along Z</span><span class="pln">
+
+      glEnd</span><span class="pun">();</span><span class="pln"> </span><span class="com">// done with the lines</span><span class="pln">
+   </span><span class="pun">}</span></code></pre>
+
+<h2>Working example</h2>
+
+<pre class="lang-c prettyprint prettyprinted" style=""><code><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;stdlib.h&gt;</span><span class="pln">
+</span><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;GL/glut.h&gt;</span><span class="pln">
+
+</span><span class="typ">GLfloat</span><span class="pln"> ctrlpoints</span><span class="pun">[</span><span class="lit">4</span><span class="pun">][</span><span class="lit">4</span><span class="pun">][</span><span class="lit">3</span><span class="pun">]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+ </span><span class="pun">{{-</span><span class="lit">1.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.0</span><span class="pun">,</span><span class="pln"> </span><span class="pun">-</span><span class="lit">1.5</span><span class="pun">},</span><span class="pln"> </span><span class="pun">{-</span><span class="lit">0.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.0</span><span class="pun">,-</span><span class="lit">1.5</span><span class="pln"> </span><span class="pun">},</span><span class="pln"> </span><span class="pun">{</span><span class="lit">0.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.0</span><span class="pun">,</span><span class="pln"> </span><span class="pun">-</span><span class="lit">1.5</span><span class="pln"> </span><span class="pun">},</span><span class="pln"> </span><span class="pun">{</span><span class="lit">1.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.0</span><span class="pun">,-</span><span class="lit">1.5</span><span class="pun">}},</span><span class="pln"> 
+ </span><span class="pun">{{-</span><span class="lit">1.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.0</span><span class="pun">,</span><span class="pln"> </span><span class="pun">-</span><span class="lit">0.5</span><span class="pun">},</span><span class="pln"> </span><span class="pun">{-</span><span class="lit">0.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2.0</span><span class="pun">,-</span><span class="lit">0.5</span><span class="pln"> </span><span class="pun">},</span><span class="pln"> </span><span class="pun">{</span><span class="lit">0.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2.0</span><span class="pun">,</span><span class="pln"> </span><span class="pun">-</span><span class="lit">0.5</span><span class="pln"> </span><span class="pun">},</span><span class="pln"> </span><span class="pun">{</span><span class="lit">1.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.0</span><span class="pun">,-</span><span class="lit">0.5</span><span class="pun">}},</span><span class="pln"> 
+ </span><span class="pun">{{-</span><span class="lit">1.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.0</span><span class="pun">,</span><span class="pln">  </span><span class="lit">0.5</span><span class="pun">},</span><span class="pln"> </span><span class="pun">{-</span><span class="lit">0.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2.0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0.5</span><span class="pln"> </span><span class="pun">},</span><span class="pln"> </span><span class="pun">{</span><span class="lit">0.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2.0</span><span class="pun">,</span><span class="pln">  </span><span class="lit">0.5</span><span class="pln"> </span><span class="pun">},</span><span class="pln"> </span><span class="pun">{</span><span class="lit">1.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0.5</span><span class="pun">}},</span><span class="pln"> 
+ </span><span class="pun">{{-</span><span class="lit">1.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.0</span><span class="pun">,</span><span class="pln">  </span><span class="lit">1.5</span><span class="pun">},</span><span class="pln"> </span><span class="pun">{-</span><span class="lit">0.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.5</span><span class="pln"> </span><span class="pun">},</span><span class="pln"> </span><span class="pun">{</span><span class="lit">0.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.0</span><span class="pun">,</span><span class="pln">  </span><span class="lit">1.5</span><span class="pln"> </span><span class="pun">},</span><span class="pln"> </span><span class="pun">{</span><span class="lit">1.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.5</span><span class="pun">}}</span><span class="pln">
+</span><span class="pun">};</span><span class="pln">
+
+</span><span class="kwd">void</span><span class="pln"> display</span><span class="pun">(</span><span class="kwd">void</span><span class="pun">)</span><span class="pln">
+</span><span class="pun">{</span><span class="pln">
+   </span><span class="typ">int</span><span class="pln"> i</span><span class="pun">,</span><span class="pln"> j</span><span class="pun">;</span><span class="pln">
+
+   glClear</span><span class="pun">(</span><span class="pln">GL_COLOR_BUFFER_BIT </span><span class="pun">|</span><span class="pln"> GL_DEPTH_BUFFER_BIT</span><span class="pun">);</span><span class="pln">
+   glColor3f</span><span class="pun">(</span><span class="lit">1.0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.0</span><span class="pun">);</span><span class="pln">
+   glPushMatrix</span><span class="pun">();</span><span class="pln">
+   glRotatef</span><span class="pun">(</span><span class="lit">25.0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.0</span><span class="pun">);</span><span class="pln">
+   </span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="pln">j </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"> j </span><span class="pun">&lt;=</span><span class="pln"> </span><span class="lit">8</span><span class="pun">;</span><span class="pln"> j</span><span class="pun">++)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      glBegin</span><span class="pun">(</span><span class="pln">GL_LINE_STRIP</span><span class="pun">);</span><span class="pln">
+      </span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="pln">i </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"> i </span><span class="pun">&lt;=</span><span class="pln"> </span><span class="lit">30</span><span class="pun">;</span><span class="pln"> i</span><span class="pun">++)</span><span class="pln">
+         glEvalCoord2f</span><span class="pun">((</span><span class="typ">GLfloat</span><span class="pun">)</span><span class="pln">i</span><span class="pun">/</span><span class="lit">30.0</span><span class="pun">,</span><span class="pln"> </span><span class="pun">(</span><span class="typ">GLfloat</span><span class="pun">)</span><span class="pln">j</span><span class="pun">/</span><span class="lit">8.0</span><span class="pun">);</span><span class="pln">
+      glEnd</span><span class="pun">();</span><span class="pln">
+      glBegin</span><span class="pun">(</span><span class="pln">GL_LINE_STRIP</span><span class="pun">);</span><span class="pln">
+      </span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="pln">i </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"> i </span><span class="pun">&lt;=</span><span class="pln"> </span><span class="lit">30</span><span class="pun">;</span><span class="pln"> i</span><span class="pun">++)</span><span class="pln">
+         glEvalCoord2f</span><span class="pun">((</span><span class="typ">GLfloat</span><span class="pun">)</span><span class="pln">j</span><span class="pun">/</span><span class="lit">8.0</span><span class="pun">,</span><span class="pln"> </span><span class="pun">(</span><span class="typ">GLfloat</span><span class="pun">)</span><span class="pln">i</span><span class="pun">/</span><span class="lit">30.0</span><span class="pun">);</span><span class="pln">
+      glEnd</span><span class="pun">();</span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+   glPopMatrix</span><span class="pun">();</span><span class="pln">
+   glFlush</span><span class="pun">();</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="kwd">void</span><span class="pln"> init</span><span class="pun">(</span><span class="kwd">void</span><span class="pun">)</span><span class="pln">
+</span><span class="pun">{</span><span class="pln">
+   glClearColor</span><span class="pun">(</span><span class="lit">0.0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0.0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0.0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0.0</span><span class="pun">);</span><span class="pln">
+   glMap2f</span><span class="pun">(</span><span class="pln">GL_MAP2_VERTEX_3</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="lit">3</span><span class="pun">,</span><span class="pln"> </span><span class="lit">4</span><span class="pun">,</span><span class="pln">
+           </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="lit">12</span><span class="pun">,</span><span class="pln"> </span><span class="lit">4</span><span class="pun">,</span><span class="pln"> </span><span class="pun">&amp;</span><span class="pln">ctrlpoints</span><span class="pun">[</span><span class="lit">0</span><span class="pun">][</span><span class="lit">0</span><span class="pun">][</span><span class="lit">0</span><span class="pun">]);</span><span class="pln">
+   glEnable</span><span class="pun">(</span><span class="pln">GL_MAP2_VERTEX_3</span><span class="pun">);</span><span class="pln">
+   glMapGrid2f</span><span class="pun">(</span><span class="lit">20</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0.0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">20</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0.0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.0</span><span class="pun">);</span><span class="pln">
+   glEnable</span><span class="pun">(</span><span class="pln">GL_DEPTH_TEST</span><span class="pun">);</span><span class="pln">
+   glShadeModel</span><span class="pun">(</span><span class="pln">GL_FLAT</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="kwd">void</span><span class="pln"> reshape</span><span class="pun">(</span><span class="typ">int</span><span class="pln"> w</span><span class="pun">,</span><span class="pln"> </span><span class="typ">int</span><span class="pln"> h</span><span class="pun">)</span><span class="pln">
+</span><span class="pun">{</span><span class="pln">
+   glViewport</span><span class="pun">(</span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="pun">(</span><span class="typ">GLsizei</span><span class="pun">)</span><span class="pln"> w</span><span class="pun">,</span><span class="pln"> </span><span class="pun">(</span><span class="typ">GLsizei</span><span class="pun">)</span><span class="pln"> h</span><span class="pun">);</span><span class="pln">
+   glMatrixMode</span><span class="pun">(</span><span class="pln">GL_PROJECTION</span><span class="pun">);</span><span class="pln">
+   glLoadIdentity</span><span class="pun">();</span><span class="pln">
+   </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">w </span><span class="pun">&lt;=</span><span class="pln"> h</span><span class="pun">)</span><span class="pln">
+      glOrtho</span><span class="pun">(-</span><span class="lit">5.0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">5.0</span><span class="pun">,</span><span class="pln"> </span><span class="pun">-</span><span class="lit">5.0</span><span class="pun">*(</span><span class="typ">GLfloat</span><span class="pun">)</span><span class="pln">h</span><span class="pun">/(</span><span class="typ">GLfloat</span><span class="pun">)</span><span class="pln">w</span><span class="pun">,</span><span class="pln"> 
+               </span><span class="lit">5.0</span><span class="pun">*(</span><span class="typ">GLfloat</span><span class="pun">)</span><span class="pln">h</span><span class="pun">/(</span><span class="typ">GLfloat</span><span class="pun">)</span><span class="pln">w</span><span class="pun">,</span><span class="pln"> </span><span class="pun">-</span><span class="lit">5.0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">5.0</span><span class="pun">);</span><span class="pln">
+   </span><span class="kwd">else</span><span class="pln">
+      glOrtho</span><span class="pun">(-</span><span class="lit">5.0</span><span class="pun">*(</span><span class="typ">GLfloat</span><span class="pun">)</span><span class="pln">w</span><span class="pun">/(</span><span class="typ">GLfloat</span><span class="pun">)</span><span class="pln">h</span><span class="pun">,</span><span class="pln"> 
+               </span><span class="lit">5.0</span><span class="pun">*(</span><span class="typ">GLfloat</span><span class="pun">)</span><span class="pln">w</span><span class="pun">/(</span><span class="typ">GLfloat</span><span class="pun">)</span><span class="pln">h</span><span class="pun">,</span><span class="pln"> </span><span class="pun">-</span><span class="lit">5.0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">5.0</span><span class="pun">,</span><span class="pln"> </span><span class="pun">-</span><span class="lit">5.0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">5.0</span><span class="pun">);</span><span class="pln">
+   glMatrixMode</span><span class="pun">(</span><span class="pln">GL_MODELVIEW</span><span class="pun">);</span><span class="pln">
+   glLoadIdentity</span><span class="pun">();</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="typ">int</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">int</span><span class="pln"> argc</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">char</span><span class="pun">**</span><span class="pln"> argv</span><span class="pun">)</span><span class="pln">
+</span><span class="pun">{</span><span class="pln">
+   glutInit</span><span class="pun">(&amp;</span><span class="pln">argc</span><span class="pun">,</span><span class="pln"> argv</span><span class="pun">);</span><span class="pln">
+   glutInitDisplayMode</span><span class="pun">(</span><span class="pln">GLUT_SINGLE </span><span class="pun">|</span><span class="pln"> GLUT_RGB</span><span class="pun">);</span><span class="pln">
+   glutInitWindowSize</span><span class="pun">(</span><span class="lit">500</span><span class="pun">,</span><span class="pln"> </span><span class="lit">500</span><span class="pun">);</span><span class="pln">
+   glutInitWindowPosition</span><span class="pun">(</span><span class="lit">100</span><span class="pun">,</span><span class="pln"> </span><span class="lit">100</span><span class="pun">);</span><span class="pln">
+   glutCreateWindow</span><span class="pun">(</span><span class="pln">argv</span><span class="pun">[</span><span class="lit">0</span><span class="pun">]);</span><span class="pln">
+   init</span><span class="pun">();</span><span class="pln">
+   glutDisplayFunc</span><span class="pun">(</span><span class="pln">display</span><span class="pun">);</span><span class="pln">
+   glutReshapeFunc</span><span class="pun">(</span><span class="pln">reshape</span><span class="pun">);</span><span class="pln">
+   glutMainLoop</span><span class="pun">();</span><span class="pln">
+   </span><span class="kwd">return</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="https://stackoverflow.com/a/13501456/314786" title="short permalink to this answer" class="short-link" id="link-post-13501456">share</a><span class="lsep">|</span><a href="https://stackoverflow.com/posts/13501456/edit" class="suggest-edit-post" title="revise and improve this post">edit</a><span class="lsep">|</span><a href="#" class="flag-post-link" title="flag this post for serious problems or moderator attention" data-postid="13501456">flag</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="https://stackoverflow.com/posts/13501456/revisions" title="show all edits to this post">edited <span title="2014-09-17 06:15:04Z" class="relativetime">Sep 17 '14 at 6:15</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="https://stackoverflow.com/users/1294354/james-harper"><div class="gravatar-wrapper-32"><img src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/1a64814b140f3c4038ef5383522c325c.png" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="https://stackoverflow.com/users/1294354/james-harper">James Harper</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">171</span><span title="1 silver badge"><span class="badge2"></span><span class="badgecount">1</span></span><span title="7 bronze badges"><span class="badge3"></span><span class="badgecount">7</span></span>
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2012-11-21 20:20:48Z" class="relativetime">Nov 21 '12 at 20:20</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="https://stackoverflow.com/users/309259/rekin"><div class="gravatar-wrapper-32"><img src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/5437bb75bf8b5d8195c1397da88abbd2.png" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="https://stackoverflow.com/users/309259/rekin">Rekin</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">5,423</span><span title="2 gold badges"><span class="badge1"></span><span class="badgecount">2</span></span><span title="16 silver badges"><span class="badge2"></span><span class="badgecount">16</span></span><span title="30 bronze badges"><span class="badge3"></span><span class="badgecount">30</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-13501456" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-18478720" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                <a class="comment-up comment-up-off" title="this comment adds something useful to the post">upvote</a>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                                <td>
+                                    <a class="comment-flag" title="Flag this comment for serious problems or moderator attention">flag</a>
+                                </td>
+                        </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Ok, now I'm aware where the original code came from, I'll add some more explanation</span>
+                    –&nbsp;<a href="https://stackoverflow.com/users/309259/rekin" title="5,423 reputation" class="comment-user">Rekin</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment18478720_13501456"><span title="2012-11-21 20:41:46Z" class="relativetime-clean">Nov 21 '12 at 20:41</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-18482085" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                <a class="comment-up comment-up-off" title="this comment adds something useful to the post">upvote</a>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                                <td>
+                                    <a class="comment-flag" title="Flag this comment for serious problems or moderator attention">flag</a>
+                                </td>
+                        </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">This is awesome. Thanks a lot!</span>
+                    –&nbsp;<a href="https://stackoverflow.com/users/1732310/knitex" title="100 reputation" class="comment-user owner">Knitex</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment18482085_13501456"><span title="2012-11-21 23:23:13Z" class="relativetime-clean">Nov 21 '12 at 23:23</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-18491394" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                <a class="comment-up comment-up-off" title="this comment adds something useful to the post">upvote</a>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                                <td>
+                                    <a class="comment-flag" title="Flag this comment for serious problems or moderator attention">flag</a>
+                                </td>
+                        </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">This is a beautifully presented answer. Much respect.</span>
+                    –&nbsp;<a href="https://stackoverflow.com/users/1086804/preet-kukreti" title="6,354 reputation" class="comment-user">Preet Kukreti</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment18491394_13501456"><span title="2012-11-22 09:33:24Z" class="relativetime-clean">Nov 22 '12 at 9:33</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-13501456" data-rep="50" data-reg="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+<script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk306998384",4).setZone(44); });
+            </script>
+            <div class="everyonelovesstackoverflow adzerk-vote" id="adzerk306998384"><a href="https://engine.adzerk.net/r?e=eyJhdiI6NDIxMCwiYXQiOjQsImJ0IjowLCJjbSI6NTU1MDg5LCJjaCI6MTE3OCwiY2siOnt9LCJjciI6MjI1NTYwMCwiZGkiOiIzZmU1OWY2ZDliNWE0ZjIxOWZlZjhlMTczYjQwNzA1NiIsImRtIjoxLCJmYyI6Mjc5NTEyNiwiZmwiOjMwNjkzNDQsImlwIjoiMTMwLjc2Ljk2LjE1NyIsImt3IjoiYyxvcGVuZ2wsYmV6aWVyLG51cmJzLHgtdXNlci1yZWdpc3RlcmVkLHgtaW5kdXN0cnktbWFudWZhY3R1cmluZyx4LWxhcmdlLWNvbXBhbnkseC1jcm9zcy1zaXRlLXNlcnZlcmZhdWx0LmNvbSIsIm1rIjoib3BlbmdsIiwibnciOjIyLCJwYyI6NC4yLCJlYyI6NC4yLCJwciI6NzY1LCJydCI6MiwicmYiOiJodHRwczovL3d3dy5nb29nbGUuY29tLyIsInNhIjoiMyIsInNiIjoiaS0wZGNmYzliMjQ5M2NlNmVhOSIsInNwIjozMTIzMywic3QiOjgyNzcsInVrIjoidWUxLWI1YmU0Yzc1YTRiOTQ2YTQ4YmNiMDlhMzU4NWVmZTI4Iiwiem4iOjQ0LCJ0cyI6MTQ5NzIyNTY4OTcwOSwiYmYiOnRydWUsInBuIjoiYWR6ZXJrMzA2OTk4Mzg0IiwidXIiOiJodHRwczovL3NvZnR3YXJlLmludGVsLmNvbS9nYW1lZGV2L3R1dG9yaWFscz91dG1fc291cmNlPVN0YWNrX092ZXJmbG93JnV0bV9tZWRpdW09YmFubmVyJnV0bV9jb250ZW50PUdhbWVfRGV2ZWxvcGVycyZ1dG1fY2FtcGFpZ249U1NHXzE3XzAyIn0&amp;s=4Q2E-6COmk7_pEgY6usl_hWrT84" rel="nofollow" target="_blank" title=""><img src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/cc4503c1fef34778bd59d8b121d93a48.png" title="" alt="" width="728" border="0" height="90"></a><div class="adzerk-vote-controls" style="display:none;"><div class="adzerk-vote-option adzerk-vote-up"><div class="adzerk-vote-icon"></div></div><div class="adzerk-vote-option adzerk-vote-down"><div class="adzerk-vote-icon"></div></div></div><div class="adzerk-vote-survey" style="display:none;"><form><span>No problem. We won't show you that ad again. Why didn't you like it?</span><ul><li><label><input value="12" name="downvoteReason" type="radio">Uninteresting</label></li><li><label><input value="13" name="downvoteReason" type="radio">Misleading</label></li><li><label><input value="14" name="downvoteReason" type="radio">Offensive</label></li><li><label><input value="15" name="downvoteReason" type="radio">Repetitive</label></li><li><label><input value="16" name="downvoteReason" type="radio">Other</label></li></ul><a href="#" class="adzerk-vote-cancel">Oops! I didn't mean to do this.</a></form></div><img style="position:absolute;" src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/i_003.gif" width="0px" border="0" height="0px"></div>
+  
+<a name="13524505"></a>
+<div id="answer-13524505" class="answer" data-answerid="13524505" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input name="_id_" value="13524505" type="hidden">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">3</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Even though it's hard to match in completeness and presentation the answer of <a href="https://stackoverflow.com/a/13501456/1716339">Rekin</a>, there's something to be clarified:</p>
+
+<p>The 'R' in NURBS stands for rational. This requires using homogeneous
+ coordinates where each control point [x,y,z] is assigned a <em>weight</em>
+ 1/w, which will be used to divide all the other elements, making NURBS 
+control points really vectors of four elements. It's through this fourth
+ element one can represent exactly circles, torii and spheres with 
+NURBS, where as with regular bezier or spline curves one can only 
+approximate circles.</p>
+
+<p>The lucky thing is that with openGL one will quickly be at least familiar with the use of the element <em>w</em>, and this will eventually lead to understanding. (or illusion of that...).</p>
+
+<p>If one uses a real NURBS modeler, one is really required to import 
+also the fourth component, unless the modeler is programmed to export a 
+non-rational surface approximation represented by 3 element vectors 
+alone.</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="https://stackoverflow.com/a/13524505/314786" title="short permalink to this answer" class="short-link" id="link-post-13524505">share</a><span class="lsep">|</span><a href="https://stackoverflow.com/posts/13524505/edit" class="suggest-edit-post" title="revise and improve this post">edit</a><span class="lsep">|</span><a href="#" class="flag-post-link" title="flag this post for serious problems or moderator attention" data-postid="13524505">flag</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="https://stackoverflow.com/posts/13524505/revisions" title="show all edits to this post">edited <span title="2017-05-23 11:54:09Z" class="relativetime">May 23 at 11:54</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="https://stackoverflow.com/users/-1/community"><div class="gravatar-wrapper-32"><img src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/a007be5a61f6aa8f3e85ae2fc18dd66e.png" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="https://stackoverflow.com/users/-1/community">Community</a><span class="mod-flair" title="moderator">♦</span>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">1</span><span title="1 silver badge"><span class="badge2"></span><span class="badgecount">1</span></span>
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2012-11-23 07:08:20Z" class="relativetime">Nov 23 '12 at 7:08</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="https://stackoverflow.com/users/1716339/aki-suihkonen"><div class="gravatar-wrapper-32"><img src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/835fc3719b0118c68c4d202b3e5cbf18.png" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="https://stackoverflow.com/users/1716339/aki-suihkonen">Aki Suihkonen</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 12,330" dir="ltr">12.3k</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="17 silver badges"><span class="badge2"></span><span class="badgecount">17</span></span><span title="34 bronze badges"><span class="badge3"></span><span class="badgecount">34</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-13524505" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-18516506" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                <a class="comment-up comment-up-off" title="this comment adds something useful to the post">upvote</a>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                                <td>
+                                    <a class="comment-flag" title="Flag this comment for serious problems or moderator attention">flag</a>
+                                </td>
+                        </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">+1 - Indeed, in any real 
+world scenario the weights cannot be omitted; CAD packages tend to 
+produce a lot of elliptic curves (pipes, rounds, cross-secions, joints) 
+and have strict requirements about the deviation. The elliptic curves 
+can be exactly represented (not approximated) only using aforementioned 
+extension - control point weights. It's not the end though, one cannot 
+represent exactly all types of curves, a projection of a curve on a 
+NURBS surface can produce a shape, which in hand cannot be represented 
+exactly using weighted Bezier splines.</span>
+                    –&nbsp;<a href="https://stackoverflow.com/users/309259/rekin" title="5,423 reputation" class="comment-user">Rekin</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment18516506_13524505"><span title="2012-11-23 07:50:29Z" class="relativetime-clean">Nov 23 '12 at 7:50</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-18516637" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                <a class="comment-up comment-up-off" title="this comment adds something useful to the post">upvote</a>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                                <td>
+                                    <a class="comment-flag" title="Flag this comment for serious problems or moderator attention">flag</a>
+                                </td>
+                        </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">ctd.: So the CAD packages 
+have to approximate the projected shapes. They add extra knots to 
+compensate a significant angular or positional  deviation. This all 
+means, using NURBS it's easy to produce a non water-thight mesh (the one
+ with surface edges ideally aligned) which in hand complicates the 
+fabrication (one has to merge the vertexes in final mesh before feeding 
+to the CAM machine). That also can be problematic in rendering, where 
+Global Illumination photons slip through the holes.</span>
+                    –&nbsp;<a href="https://stackoverflow.com/users/309259/rekin" title="5,423 reputation" class="comment-user">Rekin</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment18516637_13524505"><span title="2012-11-23 07:58:11Z" class="relativetime-clean">Nov 23 '12 at 7:58</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-13524505" data-rep="50" data-reg="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+									<a name="new-answer"></a>
+						<form id="post-form" action="/questions/13500458/answer/submit" method="post" class="post-form">
+						    <input id="post-id" value="13500458" type="hidden">
+                            <input id="qualityBanWarningShown" name="qualityBanWarningShown" value="false" type="hidden">
+                            <input name="referrer" value="https://www.google.com/" type="hidden">
+							<h2 class="space">Your Answer</h2>
+
+
+            <script>
+            StackExchange.ifUsing("editor", function () {
+                StackExchange.using("externalEditor", function () {
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.init();
+                    });
+                });
+            }, "code-snippets");
+        </script>
+    
+
+<script>
+    StackExchange.ready(function() {
+        initTagRenderer("".split(" "), "".split(" "));
+       
+        StackExchange.using("externalEditor", function() {
+                // Have to fire editor after snippets, if snippets enabled
+                if (StackExchange.settings.snippets.snippetsEnabled) {
+                    StackExchange.using("snippets", function() {
+                        createEditor();
+                    });
+                }
+                else {
+                    createEditor();
+                }
+            });
+
+            function createEditor() {
+                StackExchange.prepareEditor({
+                    heartbeatType: 'answer',
+                convertImagesToLinks: false,
+                reputationToPostImages: null,
+                bindNavPrevention: true,
+                postfix: "",
+                    onDemand: false,
+                    discardSelector: ".discard-answer"
+                    ,immediatelyShowMarkdownHelp:true
+                    });
+                
+
+        }
+    });  
+</script>
+
+
+<div id="post-editor" class="post-editor js-post-editor">
+
+    <div style="position: relative;">     
+        <div class="wmd-container">
+            <div id="wmd-button-bar" class="wmd-button-bar"><ul id="wmd-button-row" class="wmd-button-row"><li class="wmd-button" style="left: 0px;" id="wmd-bold-button" title="Strong &lt;strong&gt; Ctrl+B"><span style="background-position: 0px 0px;"></span></li><li class="wmd-button" style="left: 25px;" id="wmd-italic-button" title="Emphasis &lt;em&gt; Ctrl+I"><span style="background-position: -20px 0px;"></span></li><li class="wmd-spacer wmd-spacer1" id="wmd-spacer1"></li><li class="wmd-button" style="left: 75px;" id="wmd-link-button" title="Hyperlink &lt;a&gt; Ctrl+L"><span style="background-position: -40px 0px;"></span></li><li class="wmd-button" style="left: 100px;" id="wmd-quote-button" title="Blockquote &lt;blockquote&gt; Ctrl+Q"><span style="background-position: -60px 0px;"></span></li><li class="wmd-button" style="left: 125px;" id="wmd-code-button" title="Code Sample &lt;pre&gt;&lt;code&gt; Ctrl+K"><span style="background-position: -80px 0px;"></span></li><li class="wmd-button" style="left: 150px;" id="wmd-image-button" title="Image &lt;img&gt; Ctrl+G"><span style="background-position: -100px 0px;"></span></li><li class="wmd-button wmd-snippet-button" style="left:175px" id="wmd-snippet-button" title="JavaScript/HTML/CSS snippet Ctrl-M"><span style="background-image: url(&quot;/content/Shared/balsamiq/wmd-mockup-button.png&quot;);"></span></li><li class="wmd-spacer wmd-spacer2" id="wmd-spacer2" style="left: 220px;"></li><li class="wmd-button" style="left: 225px;" id="wmd-olist-button" title="Numbered List &lt;ol&gt; Ctrl+O"><span style="background-position: -120px 0px;"></span></li><li class="wmd-button" style="left: 250px;" id="wmd-ulist-button" title="Bulleted List &lt;ul&gt; Ctrl+U"><span style="background-position: -140px 0px;"></span></li><li class="wmd-button" style="left: 275px;" id="wmd-heading-button" title="Heading &lt;h1&gt;/&lt;h2&gt; Ctrl+H"><span style="background-position: -160px 0px;"></span></li><li class="wmd-button" style="left: 300px;" id="wmd-hr-button" title="Horizontal Rule &lt;hr&gt; Ctrl+R"><span style="background-position: -180px 0px;"></span></li><li class="wmd-spacer wmd-spacer3" id="wmd-spacer3" style="left: 346px;"></li><li class="wmd-button" style="left: 350px;" id="wmd-undo-button" title="Undo - Ctrl+Z"><span style="background-position: -200px -20px;"></span></li><li class="wmd-button" style="left: 375px;" id="wmd-redo-button" title="Redo - Ctrl+Y"><span style="background-position: -220px -20px;"></span></li><li class="wmd-button wmd-help-button active-help" id="wmd-help-button" style="right: 0px;" title="Markdown Editing Help"><span style="background-position: -240px 0px;"></span></li><div id="mdhelp" class="mdhelp" style="right: -13px; width: 660px; top: 41px;">
+    <ul id="mdhelp-tabs" class="mdhelp-tabs">
+        <li data-tab="mdhelp-links" data-buttons="link">Links</li>
+        <li data-tab="mdhelp-images" data-buttons="image">Images</li>
+        <li data-tab="mdhelp-styles" data-buttons="bold,italic,heading">Styling/Headers</li>
+        <li data-tab="mdhelp-lists" data-buttons="olist,ulist">Lists</li>
+        <li data-tab="mdhelp-blockquotes" data-buttons="quote">Blockquotes</li>
+        <li data-tab="mdhelp-code" data-buttons="code">Code</li>
+        <li data-tab="mdhelp-html"> HTML </li>
+        <li style="float:right"><a href="https://stackoverflow.com/editing-help" target="_blank">advanced help »</a></li>
+    </ul>
+    
+    <div class="mdhelp-tab" id="mdhelp-links">
+            <p>
+                In most cases, a plain URL will be recognized as such and automatically linked:
+            </p>
+            <pre>Visit https://area51.stackexchange.com/ regularly!
+Use angle brackets to force linking: Have you seen &lt;https://superuser.com&gt;?
+</pre>
+            <p>
+                To create fancier links, use Markdown:
+            </p>
+                <pre>Here's [a link](http://www.example.com/)! And a reference-style link to [a panda][1].
+References don't have to be [numbers][question].
+
+ [1]: https://notfound.stackexchange.com/
+ [question]: https://english.stackexchange.com/questions/11481
+</pre>
+                <p>You can add tooltips to links:</p>
+<pre>Click [here](https://diy.stackexchange.com<span class="spaces">&nbsp;</span>"this text appears when you mouse over")!
+This works with [reference links][blog] as well.
+
+ [blog]: https://stackoverflow.blog/<span class="spaces">&nbsp;</span>"click here for updates"
+</pre>
+    </div>
+
+    <div class="mdhelp-tab" id="mdhelp-images">
+        <p>Images are exactly like links, but they have an exclamation point in front of them:</p>
+        <pre>![a busy cat](https://cdn.sstatic.net/Sites/stackoverflow/img/error-lolcat-problemz.jpg)
+![two muppets][1]
+
+ [1]: https://i.imgur.com/I5DFV.jpg "tooltip"
+</pre>
+        <p>
+            The word in square brackets is the alt text, which gets displayed if the browser
+ can't show the image. Be sure to include meaningful alt text for screen-reading
+ software.
+        </p>
+   
+    </div>
+    <div class="mdhelp-tab" id="mdhelp-styles">
+        <div class="col1">
+            <p>Be sure to use text styling sparingly; only where it helps readability.</p>
+                <pre>*This is italicized*, and so
+is _this_.
+
+**This is bold**, just like __this__.
+
+You can ***combine*** them
+if you ___really have to___.
+</pre>
+        
+        </div>
+        <div class="col2">
+            <p>
+                To break your text into sections, you can use headers:
+            </p>
+                <pre>A Large Header
+==============
+
+Smaller Subheader
+-----------------
+</pre>
+            <p>
+                Use hash marks if you need several levels of headers:</p>
+    <pre># Header 1 #
+## Header 2 ##
+### Header 3 ###
+</pre>
+
+            
+        </div>
+
+    </div>
+    <div class="mdhelp-tab" id="mdhelp-lists">
+        <p>Both bulleted and numbered lists are possible:</p>
+        <div class="col1">
+<pre>-<span class="spaces">&nbsp;</span>Use a minus sign for a bullet
++<span class="spaces">&nbsp;</span>Or plus sign
+*<span class="spaces">&nbsp;</span>Or an asterisk
+
+1.<span class="spaces">&nbsp;</span>Numbered lists are easy
+2.<span class="spaces">&nbsp;</span>Markdown keeps track of
+ the numbers for you
+7.<span class="spaces">&nbsp;</span>So this will be item 3.
+</pre>
+        </div>
+        <div class="col2">
+<pre>1.<span class="spaces">&nbsp;</span>Lists in a list item:
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>-<span class="spaces">&nbsp;</span>Indented four spaces.
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>*<span class="spaces">&nbsp;</span>indented eight spaces.
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>-<span class="spaces">&nbsp;</span>Four spaces again.
+2.<span class="spaces">&nbsp;&nbsp;</span>You can have multiple
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>paragraphs in a list items.
+<span class="spaces">&nbsp;</span>
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>Just be sure to indent.
+</pre>        
+        </div>
+    </div>
+
+    <div class="mdhelp-tab" id="mdhelp-blockquotes">
+        <div class="col1">
+            <pre>&gt; Create a blockquote by
+&gt; prepending “&gt;” to each line.
+&gt;
+&gt; Other formatting also works here, e.g.
+&gt;
+&gt; 1. Lists or
+&gt; 2. Headings:
+&gt;
+&gt; ## Quoted Heading ##
+</pre>
+        </div>
+        <div class="col2">
+                <p>
+                    You can even put blockquotes in blockquotes:
+                </p>
+                <pre>&gt; A standard blockquote is indented
+&gt; &gt; A nested blockquote is indented more
+&gt; &gt; &gt; &gt; You can nest to any depth.
+</pre>
+        </div>
+    </div>
+
+    <div class="mdhelp-tab" id="mdhelp-code">
+        <p>
+            To create code blocks or other preformatted text, indent by four spaces:
+        </p>
+        <pre><span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>This will be displayed in a monospaced font. The first four spaces
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>will be stripped off, but all other whitespace will be preserved.
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>Markdown and HTML are turned off in code blocks:
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;i&gt;This is not italic&lt;/i&gt;, and [this is not a link](http://example.com)
+</pre>
+        <p>
+            To create not a block, but an inline code span, use backticks:
+        </p>
+        <pre>The `$` character is just a shortcut for `window.jQuery`.
+</pre>
+        <p>
+            If you want to have a preformatted block within a list, indent by eight spaces:
+        </p>
+        <pre>1. This is normal text.
+2. So is this, but now follows a code block:
+<span class="spaces">&nbsp;</span>
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>Skip a line and indent eight spaces.
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>That's four spaces for the list
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>and four to trigger the code block.
+</pre>
+    </div>
+
+    <div class="mdhelp-tab" id="mdhelp-html">
+        <p>
+            If you need to do something that Markdown can't handle, use HTML. Note that <a href="https://meta.stackexchange.com/questions/1777/what-html-tags-are-allowed" target="_blank">we only support a very strict subset of HTML!</a>
+        </p>
+        <pre>Strikethrough humor is &lt;strike&gt;funny&lt;/strike&gt;.
+</pre>
+        <p>
+            Markdown is smart enough not to mangle your span-level HTML:
+        </p>
+        <pre>&lt;b&gt;Markdown works *fine* in here.&lt;/b&gt;
+</pre>
+        <p>
+            Block-level HTML elements have a few restrictions:
+        </p>
+        <ol>
+            <li>They must be separated from surrounding text by blank lines.</li>
+            <li>The begin and end tags of the outermost block element must not be indented.</li>
+            <li>Markdown can't be used within HTML blocks.</li>
+        </ol>
+        <br>
+        <pre>&lt;pre&gt;
+ You can &lt;em&gt;not&lt;/em&gt; use Markdown in here.
+&lt;/pre&gt;
+</pre>
+    </div>
+
+    <div class="cbt"></div>
+</div></ul></div>
+            <div style="clear: both; height: 28px;"></div><textarea id="wmd-input" class="wmd-input processed" name="post-text" cols="92" rows="15" tabindex="101" data-min-length=""></textarea>
+        <div class="grippie" style="margin-right: 0px;"></div></div>
+    </div>
+
+    <div class="fl" style="margin-top: 8px; height:24px;">&nbsp;</div>
+    <div id="draft-saved" class="draft-saved community-option fl" style="margin-top: 8px; height:24px; display:none;">draft saved</div>
+
+    <div id="draft-discarded" class="draft-discarded community-option fl" style="margin-top: 8px; height:24px; display:none;">draft discarded</div>
+
+    <div class="community-option">
+        <input id="communitymode" name="communitymode" type="checkbox">
+        <label for="communitymode" title="Marking an answer community wiki encourages others to edit it by lowering the reputation barrier required to edit. However, you will not gain any upvote reputation from it. This cannot be undone.">community wiki</label>
+    </div>
+
+
+    <div id="wmd-preview" class="wmd-preview"></div>
+    <div></div>
+    <div class="edit-block">
+        <input id="fkey" name="fkey" value="e3865fa2c116ff77d74d42880b27a6cc" type="hidden">
+        <input id="author" name="author" type="text">
+    </div>
+
+
+
+</div>
+							<div style="position: relative;">
+								
+								
+							</div>
+           
+															<div class="form-submit cbt">
+									<input id="submit-button" value="Post Your Answer" tabindex="110" type="submit">
+									<a href="#" class="btn-clear discard-answer dno">discard</a>
+								</div>
+						</form>
+
+
+
+						<h2 class="bottom-notice" data-loc="1">
+Not the answer you're looking for?							Browse other questions tagged <a href="https://stackoverflow.com/questions/tagged/c" class="post-tag" title="show questions tagged 'c'" rel="tag">c</a> <a href="https://stackoverflow.com/questions/tagged/opengl" class="post-tag" title="show questions tagged 'opengl'" rel="tag">opengl</a> <a href="https://stackoverflow.com/questions/tagged/bezier" class="post-tag" title="show questions tagged 'bezier'" rel="tag">bezier</a> <a href="https://stackoverflow.com/questions/tagged/nurbs" class="post-tag" title="show questions tagged 'nurbs'" rel="tag">nurbs</a>  or <a href="https://stackoverflow.com/questions/ask">ask your own question</a>.						</h2>
+			</div>
+		</div>
+				<div id="sidebar" class="show-votes" role="complementary" aria-label="sidebar">
+						    <div class="module question-stats">
+			        <table id="qinfo">
+			            <tbody><tr>
+			                <td>
+			                    <p class="label-key">asked</p>
+			                </td>
+			                <td style="padding-left: 10px">
+			                    <p class="label-key" title="2012-11-21 19:15:11Z"><b>4 years, 6 months ago</b></p>
+			                </td>
+			            </tr>
+			            <tr>
+			                <td>
+			                    <p class="label-key">viewed</p>
+			                </td>
+
+			                <td style="padding-left: 10px">
+			                    <p class="label-key">
+                                    <b>6,557 times</b>
+			                    </p>
+			                </td>
+			            </tr>
+			                <tr>
+			                    <td>
+			                        <p class="label-key">active</p>
+			                    </td>
+			                    <td style="padding-left: 10px">
+			                        <p class="label-key"><b><a href="https://stackoverflow.com/questions/13500458/opengl-nurbs-surface?lastactivity" class="lastactivity-link" title="2014-09-17 06:15:04Z">2 years, 8 months ago</a></b></p>
+			                    </td>
+			                </tr>
+			        </tbody></table>
+			    </div>
+			<div class="module community-bulletin" data-tracker="cb=1">
+    <div class="related">
+                <div class="bulletin-title">
+                    Hot Meta Posts
+                </div>
+                <hr>
+    <div class="spacer">
+        <div class="bulletin-item-type">
+                <span title="Vote score (upvotes - downvotes)">18</span>
+            </div>
+                <div class="bulletin-item-content">
+                    <a href="https://meta.stackoverflow.com/questions/350411/we-need-to-keep-tabs-on-this-ambiguity?cb=1" class="question-hyperlink">We need to keep [tabs] on this ambiguity</a>
+                </div>
+                <br class="cbt">
+            </div>
+    <div class="spacer">
+        <div class="bulletin-item-type">
+                <span title="Vote score (upvotes - downvotes)">10</span>
+            </div>
+                <div class="bulletin-item-content">
+                    <a href="https://meta.stackoverflow.com/questions/350451/i-am-flagging-this-comment-as-popup-is-flickering-on-answers-which-are-shaded?cb=1" class="question-hyperlink">“I am flagging this comment as” popup is flickering on answers which are shaded</a>
+                </div>
+                <br class="cbt">
+            </div>
+    <div class="spacer">
+        <div class="bulletin-item-type">
+                <span title="Vote score (upvotes - downvotes)">10</span>
+            </div>
+                <div class="bulletin-item-content">
+                    <a href="https://meta.stackoverflow.com/questions/350492/whats-going-on-with-documentation-this-month?cb=1" class="question-hyperlink">What's going on with Documentation this month?</a>
+                </div>
+                <br class="cbt">
+            </div>
+    <div class="spacer">
+        <div class="bulletin-item-type">
+                <span title="Vote score (upvotes - downvotes)">9</span>
+            </div>
+                <div class="bulletin-item-content">
+                    <a href="https://meta.stackoverflow.com/questions/350487/new-review-interface-is-not-looking-pretty-good-with-lots-of-text?cb=1" class="question-hyperlink">New review interface is not looking pretty good with lots of text</a>
+                </div>
+                <br class="cbt">
+            </div>
+    </div>
+</div>			
+			<script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk608977062",[5,17,2221,1129,43]).setZone(45); });
+            </script>
+            <div class="everyonelovesstackoverflow adzerk-vote" id="adzerk608977062"><iframe id="ados_frame_adzerk608977062_5654386" scrolling="no" width="300" height="250" frameborder="0"></iframe><div class="adzerk-vote-controls" style="display:none;"><div class="adzerk-vote-option adzerk-vote-up"><div class="adzerk-vote-icon"></div></div><div class="adzerk-vote-option adzerk-vote-down"><div class="adzerk-vote-icon"></div></div></div><div class="adzerk-vote-survey" style="display:none;"><form><span>No problem. We won't show you that ad again. Why didn't you like it?</span><ul><li><label><input value="12" name="downvoteReason" type="radio">Uninteresting</label></li><li><label><input value="13" name="downvoteReason" type="radio">Misleading</label></li><li><label><input value="14" name="downvoteReason" type="radio">Offensive</label></li><li><label><input value="15" name="downvoteReason" type="radio">Repetitive</label></li><li><label><input value="16" name="downvoteReason" type="radio">Other</label></li></ul><a href="#" class="adzerk-vote-cancel">Oops! I didn't mean to do this.</a></form></div><img style="position:absolute;" src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/i.gif" width="0px" border="0" height="0px"></div>
+            <div id="hireme" class="blue tagged tex2jax_ignore clc-jobs-multi"><a class="top " href="https://stackoverflow.com/jobs" target="_blank" data-clc-click="https://clc.stackoverflow.com/click?an=4zI_JqyntvGKh_6VsOBQJiaBRKZVDTvYvm5lV2C2nW--O8GsnvGj352AE4EMzAwpB-TT6ywNN1faMTIyMMkz_e1nf7uPo-8yH1huNe8Kyyqlr3bzmR53sndt53h9GCR-5fDTphmWO4V07RlZshLLEvmMmf4eZ2Rg4Hl8hJGBkYdvl6_Uuf1lz3qiAA&amp;cr=10440&amp;ct=1&amp;url=https%3A%2F%2Fstackoverflow.com%2Fjobs%3Fmed=clc&amp;sig=F-PmgaPkkVovkg"><span>Looking for a job?</span></a><div class="middle"><ul class="jobs"><li class="&quot;clc-dismissable&quot;"><div class="job-wrap"><a class="job" title="Junior NetSuite Technical Consultant at Techfino LLC. Click to learn more." href="https://stackoverflow.com/jobs/136700/junior-netsuite-technical-consultant-techfino-llc" target="_blank" data-clc-click="https://clc.stackoverflow.com/click?an=4zI_JqyntvGKh_6VsOBQJiaBRKZVDTvYvm5lV2C2nW--O8GsnvGj352AE4EMzAwpB-TT6ywNN1faMTIyMMkz_e1nf7uPo-8yH1huNe8Kyyqlr3bzmR53sndt53h9GCR-5fDTphmWO4V07RlZshLLEvmMmf4eZ2Rg4Hl8hJGBkYdvl6_Uuf1lz3qiAA&amp;cr=240014&amp;ct=0&amp;url=https%3A%2F%2Fstackoverflow.com%2Fjobs%2F136700%2Fjunior-netsuite-technical-consultant-techfino-llc%3Fmed=clc&amp;sig=e-uGceJTlv1yig"><div class="title">Junior NetSuite Technical Consultant</div><div><span class="company">Techfino LLC</span><span class="dash">-</span><span class="location">Philadelphia, PA</span></div><div class="opts"><span class="opt salary">$45k - $65k</span><span class="opt remote">Remote</span></div><span class="clc-post-tag">javascript</span><span class="clc-post-tag">html</span><div></div></a></div><a class="clc-dismiss" data-clc-click="https://clc.stackoverflow.com/click?an=4zI_JqyntvGKh_6VsOBQJiaBRKZVDTvYvm5lV2C2nW--O8GsnvGj352AE4EMzAwpB-TT6ywNN1faMTIyMMkz_e1nf7uPo-8yH1huNe8Kyyqlr3bzmR53sndt53h9GCR-5fDTphmWO4V07RlZshLLEvmMmf4eZ2Rg4Hl8hJGBkYdvl6_Uuf1lz3qiAA&amp;cr=240014&amp;ct=-1&amp;sig=37nk_-wOMavYTA" data-clc-meta-target="-1"><span class="clc-tooltip above-left">dismiss this job</span></a></li><li class="&quot;clc-dismissable&quot;"><div class="job-wrap"><a class="job" title="FinTech Data Platform Engineer at Axegine (a Seaport Global Company). Click to learn more." href="https://stackoverflow.com/jobs/135558/fintech-data-platform-engineer-axegine-a-seaport-global" target="_blank" data-clc-click="https://clc.stackoverflow.com/click?an=4zI_JqyntvGKh_6VsOBQJiaBRKZVDTvYvm5lV2C2nW--O8GsnvGj352AE4EMzAwpB-TT6ywNN1faMTIyMMkz_e1nf7uPo-8yH1huNe8Kyyqlr3bzmR53sndt53h9GCR-5fDTphmWO4V07RlZshLLEvmMmf4eZ2Rg4Hl8hJGBkYdvl6_Uuf1lz3qiAA&amp;cr=238059&amp;ct=0&amp;url=https%3A%2F%2Fstackoverflow.com%2Fjobs%2F135558%2Ffintech-data-platform-engineer-axegine-a-seaport-global%3Fmed=clc&amp;sig=OSNcCQL-JatvNw"><div class="title">FinTech Data Platform Engineer</div><div><span class="company">Axegine (a Seaport Global Company)</span><span class="dash">-</span><span class="location">New York, NY</span></div><div class="opts"></div><span class="clc-post-tag highlight">java</span><span class="clc-post-tag">apache-kafka</span><div></div></a></div><a class="clc-dismiss" data-clc-click="https://clc.stackoverflow.com/click?an=4zI_JqyntvGKh_6VsOBQJiaBRKZVDTvYvm5lV2C2nW--O8GsnvGj352AE4EMzAwpB-TT6ywNN1faMTIyMMkz_e1nf7uPo-8yH1huNe8Kyyqlr3bzmR53sndt53h9GCR-5fDTphmWO4V07RlZshLLEvmMmf4eZ2Rg4Hl8hJGBkYdvl6_Uuf1lz3qiAA&amp;cr=238059&amp;ct=-1&amp;sig=5HGZS5hc270Tsw" data-clc-meta-target="-1"><span class="clc-tooltip above-left">dismiss this job</span></a></li></ul></div><img src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/impression.gif" class="impression" style="display: none;"></div>
+        <script>
+window.clc_request = 
+'Anx-vSwmsdQI9doBACoAzgACAAAAAgAAAANvAAAAfGN8b3BlbmdsfGJlemllcnxudXJic3x4LXVzZXItcmVnaXN0ZXJlZHx4LWluZHVzdHJ5LW1hbnVmYWN0dXJpbmd8eC1sYXJnZS1jb21wYW55fHgtY3Jvc3Mtc2l0ZS1zZXJ2ZXJmYXVsdC5jb218AAUd9h7bdHILS3E';;(function(n){var
+ 
+u={log:window.console.log.bind(window.console,"[clc]"),error:window.console.error.bind(window.console,"[clc]")},f,e,t,r,i;try{if(typeof[].indexOf!="function")return;if(window.attachEvent&&!window.addEventListener)return;if(f=n.allowed,!f)return;if(e=new
+ RegExp(n.allowed),!e.test(location.hostname)){u.error("Invalid host: 
+"+location.hostname);return}if(t=window,t.clc=t.clc||{},t.clc.init=t.clc.init||[],t.clc.init.push(function(n){return
+ n.load()}),t.clc.options){for(r in 
+t.clc.options)n[r]=t.clc.options[r];t.clc.options=n}else 
+t.clc.options=n;i=document.createElement("script");i.async=!0;i.src=n.lib;document.body.appendChild(i)}catch(o){u.error("[clc]
+ Error in loader:",o)}}).call(null, 
+{"lib":"https://cdn.sstatic.net/clc/clc.min.js?v=436861d2e2c5","u":"https://clc.stackoverflow.com/markup.js","azw":true,"kt":2000,"tto":true,"d":{"sb":["hireme","clc-sb"],"tlb":["careers1","clc-tlb"],"mlb":["careers3","clc-mlb"]},"h":"clc.stackoverflow.com","autoload":true,"allowed":"^(((talent\\.)?stackoverflow)|(blog\\.codinghorror)|(serverfault|askubuntu)|([^\\.]+\\.stackexchange))\\.com$"});
+        </script>
+			<div class="module" id="chat-feature">
+
+    <h4><a href="http://chat.stackoverflow.com/" id="h-chat-link" title="43 users active in 27 rooms the last 60 minutes">43 People Chatting</a></h4>
+    <div class="related" id="ad502-rooms"><div class="ad502-room"><h3 class="ad502-room-h3"><span class="ad502-room-title" title="JavaScript"><a href="http://chat.stackoverflow.com/rooms/17">JavaScript</a></span></h3><span title="2017-06-11 22:48:16Z" class="ad502-last-message">1 hour ago - <a href="http://chat.stackoverflow.com/users/871050">Madara Uchiha</a></span><br><div class="ad502-users"><a href="http://chat.stackoverflow.com/users/871050"><img title="Madara Uchiha: 1 hour ago" src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/a7a50a9492be737b0c012a839338272a.png" width="23" height="23"></a><a href="http://chat.stackoverflow.com/users/422252"><img title="William: 1 hour ago" src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/FfDIa.gif" width="23" height="23"></a><a href="http://chat.stackoverflow.com/users/624596"><img title="Linkgoron: 1 hour ago" src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/7d6106ee52e837bcc9e1d44771aa2ec0.png" width="23" height="23"></a><a href="http://chat.stackoverflow.com/users/4309065"><img title="Yusuf Adeyemo: 1 hour ago" src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/photo.jpg" width="23" height="23"></a><a href="http://chat.stackoverflow.com/users/4501442"><img title="Sal Orozco: 1 hour ago" src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/picture.jpg" width="23" height="23"></a><a href="http://chat.stackoverflow.com/users/956900"><img title="Luggage: 1 hour ago" src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/4416acf0ee6259443ee3cca16d894d14.png" width="23" height="23"></a><a href="http://chat.stackoverflow.com/users/203093"><img title="hsimah: 1 hour ago" src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/63c675da2f684ec9c8286a134f2eec87.png" width="23" height="23"></a></div></div><div class="ad502-room"><h3 class="ad502-room-h3"><span class="ad502-room-title" title="Lounge&lt;C++&gt;"><a href="http://chat.stackoverflow.com/rooms/10">Lounge&lt;C++&gt;</a></span></h3><span title="2017-06-11 22:02:18Z" class="ad502-last-message">1 hour ago - <a href="http://chat.stackoverflow.com/users/6767800">ScY</a></span><br><div class="ad502-users"><a href="http://chat.stackoverflow.com/users/298661"><img title="Puppy: 1 hour ago" src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/3445f56229632874a44596385ed6d40c.jpg" width="23" height="23"></a><a href="http://chat.stackoverflow.com/users/1116364"><img title="Daniel Jour: 1 hour ago" src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/b67dfca0caba03083330d39a304b1766.png" width="23" height="23"></a><a href="http://chat.stackoverflow.com/users/6767800"><img title="ScY: 1 hour ago" src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/j4DiC.jpg" width="23" height="23"></a><a href="http://chat.stackoverflow.com/users/71141"><img title="Etienne de Martel: 2 hours ago" src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/e1f5d1bd28627ad2f5a9b47ef63a2dc8.jpg" width="23" height="23"></a><a href="http://chat.stackoverflow.com/users/500104"><img title="Xeo: 2 hours ago" src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/ff1143d80ee378720a879e79fe6da68f.png" width="23" height="23"></a><a href="http://chat.stackoverflow.com/users/343443"><img title="Abyx: 2 hours ago" src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/2dcf7b64ff07a02fbd78c27f50ce9631.png" width="23" height="23"></a><a href="http://chat.stackoverflow.com/users/922184"><img title="Mysticial: 3 hours ago" src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/URZNf.jpg" width="23" height="23"></a></div></div></div>
+    <script>
+    // <!--
+        StackExchange.ready(
+        function () {
+            var options = {
+                chatUrl: 'http://chat.stackoverflow.com',
+                reloadUrl: '/api/recent-chat',
+                preloadData: 
+{"activeUsers":43,"activeRooms":27,"rooms":[{"name":"JavaScript","id":17,"lastPost":1497221296,"posts":4030489,"users":[{"name":"Madara
+ 
+Uchiha","id":871050,"emailhash":"a7a50a9492be737b0c012a839338272a","lastPost":1497221295},{"name":"William","id":422252,"emailhash":"!https://i.stack.imgur.com/FfDIa.gif?s=128\u0026g=1","lastPost":1497221155},{"name":"Linkgoron","id":624596,"emailhash":"7d6106ee52e837bcc9e1d44771aa2ec0","lastPost":1497220773},{"name":"Yusuf
+ 
+Adeyemo","id":4309065,"emailhash":"!https://lh5.googleusercontent.com/-DhzJIIr-3ug/AAAAAAAAAAI/AAAAAAAAAB4/hlsC_kd3pqI/photo.jpg?sz=128","lastPost":1497220393},{"name":"Sal
+ 
+Orozco","id":4501442,"emailhash":"!https://graph.facebook.com/100002888429079/picture?type=large","lastPost":1497219936},{"name":"Luggage","id":956900,"emailhash":"4416acf0ee6259443ee3cca16d894d14","lastPost":1497219906},{"name":"hsimah","id":203093,"emailhash":"63c675da2f684ec9c8286a134f2eec87","lastPost":1497219345}],"messages":[{"date":1497221296,"user":"Madara
+ 
+Uchiha","userid":871050}],"singleImage":false,"tags":["ecmascript","ecmascript-6","hypescript","javascript","nodejs"]},{"name":"Lounge\u003cC++\u003e","id":10,"lastPost":1497218538,"posts":4915539,"users":[{"name":"Puppy","id":298661,"emailhash":"3445f56229632874a44596385ed6d40c","lastPost":1497219718},{"name":"Daniel
+ 
+Jour","id":1116364,"emailhash":"b67dfca0caba03083330d39a304b1766","lastPost":1497219676},{"name":"ScY","id":6767800,"emailhash":"!https://i.stack.imgur.com/j4DiC.jpg?s=128\u0026g=1","lastPost":1497218537},{"name":"Etienne
+ de 
+Martel","id":71141,"emailhash":"e1f5d1bd28627ad2f5a9b47ef63a2dc8","lastPost":1497218193},{"name":"Xeo","id":500104,"emailhash":"ff1143d80ee378720a879e79fe6da68f","lastPost":1497215052},{"name":"Abyx","id":343443,"emailhash":"2dcf7b64ff07a02fbd78c27f50ce9631","lastPost":1497214954},{"name":"Mysticial","id":922184,"emailhash":"!https://i.stack.imgur.com/URZNf.jpg?s=128\u0026g=1","lastPost":1497214478}],"messages":[{"date":1497218538,"user":"ScY","userid":6767800}],"singleImage":false,"tags":["c++","c++11","c++14","c++17","c++-faq"]}]}
+ 
+            };
+
+            StackExchange.chatAd.init(options);
+        });
+    // -->
+    </script>
+
+</div>
+
+            
+
+				<div class="module sidebar-related">
+					<h4 id="h-related">Related</h4>
+                    <div class="related js-gps-related-questions" data-tracker="rq=1">
+                        <div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/8088005?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">0</div></a><a href="https://stackoverflow.com/questions/8088005/the-nurbs-surface-does-not-show-up-in-opengl?rq=1" class="question-hyperlink">the nurbs surface does not show up in openGL</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/12075368?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">0</div></a><a href="https://stackoverflow.com/questions/12075368/nurbs-surfaces-in-opengl-3-2-core-profile?rq=1" class="question-hyperlink">NURBS surfaces in OpenGL 3.2 core profile</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/12886141?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">2</div></a><a href="https://stackoverflow.com/questions/12886141/opengl-nurbs-finding-knot-coordinates?rq=1" class="question-hyperlink">OpenGL Nurbs: finding knot coordinates</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/13572811?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">4</div></a><a href="https://stackoverflow.com/questions/13572811/how-to-know-a-specific-value-position-using-a-nurbs-with-opengl?rq=1" class="question-hyperlink">How to know a specific value position using a Nurbs with OpenGL?</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/14907454?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">0</div></a><a href="https://stackoverflow.com/questions/14907454/nurbs-in-the-opengl-graphics-pipeline?rq=1" class="question-hyperlink">NURBS in the OpenGL Graphics Pipeline</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/16336099?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">0</div></a><a href="https://stackoverflow.com/questions/16336099/control-points-in-nurbs-surfaces?rq=1" class="question-hyperlink">Control points in nurbs surfaces</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/22957051?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">0</div></a><a href="https://stackoverflow.com/questions/22957051/how-is-one-nurbs-surface-rendered?rq=1" class="question-hyperlink">How is one NURBS surface rendered?</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/28558888?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">0</div></a><a href="https://stackoverflow.com/questions/28558888/nurbs-trimmed-surface?rq=1" class="question-hyperlink">Nurbs trimmed surface</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/39445684?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">-1</div></a><a href="https://stackoverflow.com/questions/39445684/how-to-i-draw-with-nurbs-in-opengl?rq=1" class="question-hyperlink">how to i draw with NURBS in opengl?</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/40637061?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">0</div></a><a href="https://stackoverflow.com/questions/40637061/trim-nurbs-surface-with-open-gl?rq=1" class="question-hyperlink">Trim NURBS surface with OPEN GL</a></div>
+                    </div>
+				</div>
+            
+
+<div id="hot-network-questions" class="module tex2jax_ignore">
+    <h4>
+        <a href="https://stackexchange.com/questions?tab=hot" class="js-gps-track" data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+            Hot Network Questions
+        </a>
+    </h4>
+    <ul>
+            <li>
+                <div class="favicon favicon-electronics" title="Electrical Engineering Stack Exchange"></div><a href="https://electronics.stackexchange.com/questions/310326/why-are-they-connecting-the-input-signal-parallel-to-the-dc-source" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:135 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why are they connecting the input signal parallel to the dc source?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-judaism" title="Mi Yodeya"></div><a href="https://judaism.stackexchange.com/questions/83254/multiple-wives-in-chazal" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:248 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Multiple wives in Chazal
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-travel" title="Travel Stack Exchange"></div><a href="https://travel.stackexchange.com/questions/94936/is-it-legal-to-turn-high-beams-on-when-driving-on-a-european-highway-with-fully" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:273 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is it legal to turn high beams on when driving on a european highway with fully separated lanes?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="https://worldbuilding.stackexchange.com/questions/83199/what-would-be-the-possible-issues-with-an-iq-based-voting-system" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What would be the possible issues with an IQ based voting system
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="https://codegolf.stackexchange.com/questions/125823/how-many-carries-do-i-need-to-add-these-two-numbers" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How many carries do I need to add these two numbers?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-sqa" title="Software Quality Assurance &amp; Testing Stack Exchange"></div><a href="https://sqa.stackexchange.com/questions/27622/how-should-a-software-tester-deal-with-missed-defects-bugs-in-production" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:244 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How should a Software Tester deal with missed Defects/bugs in Production?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-emacs" title="Emacs Stack Exchange"></div><a href="https://emacs.stackexchange.com/questions/33464/prevent-mouse-3-on-mode-line-from-closing-the-window" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:583 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Prevent mouse-3 on mode-line from closing the window
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="https://scifi.stackexchange.com/questions/161469/whats-the-east-india-trading-company-doing-out-west" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What's the East India Trading Company doing out West?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-skeptics" title="Skeptics Stack Exchange"></div><a href="https://skeptics.stackexchange.com/questions/38606/was-pink-a-boy-color-and-blue-a-girl-color-prior-to-the-20th-century" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:212 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Was pink a boy color and blue a girl color prior to the 20th century?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-islam" title="Islam Stack Exchange"></div><a href="https://islam.stackexchange.com/questions/40618/what-is-the-relation-between-ayah-1-and-2-in-surah-al-isra" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:455 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What is the relation between ayah 1 and 2 in surah al Isra'?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-android" title="Android Enthusiasts Stack Exchange"></div><a href="https://android.stackexchange.com/questions/176501/why-do-phones-have-more-cores-than-computers" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:139 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why do phones have more cores than computers?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="https://english.stackexchange.com/questions/393497/haste-or-no-haste-that-is-the-question" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Haste or no haste? That is the question
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="https://math.stackexchange.com/questions/2318984/inverse-of-the-matrix" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Inverse of the matrix
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="https://academia.stackexchange.com/questions/90769/my-paper-was-presented-as-part-of-a-keynote-speech-written-by-my-advisor-what-d" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    My paper was presented as part of a Keynote speech written by my advisor. What do I mention in my CV?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="https://worldbuilding.stackexchange.com/questions/82881/could-extreme-climate-zones-exist-next-to-each-other" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Could extreme climate zones exist next to each other?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-codereview" title="Code Review Stack Exchange"></div><a href="https://codereview.stackexchange.com/questions/165479/quick-sort-implementation-c11" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:196 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Quick Sort Implementation C++11
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-salesforce" title="Salesforce Stack Exchange"></div><a href="https://salesforce.stackexchange.com/questions/178400/how-to-use-getsobject-to-retrieve-related-data-in-a-null-safe-manner" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:459 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to use GetSObject to retrieve related data in a null safe manner?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-gis" title="Geographic Information Systems Stack Exchange"></div><a href="https://gis.stackexchange.com/questions/243559/how-to-make-a-world-grid-with-a-angle-in-qgis" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:79 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to make a world grid with a angle in qgis?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-graphicdesign" title="Graphic Design Stack Exchange"></div><a href="https://graphicdesign.stackexchange.com/questions/93078/why-png-i-downloaded-isnt-displaying-transparency-in-photoshop" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:174 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why PNG I downloaded isn't displaying transparency in photoshop?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-unix" title="Unix &amp; Linux Stack Exchange"></div><a href="https://unix.stackexchange.com/questions/370376/link-2-existing-files" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:106 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Link 2 existing files
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="https://worldbuilding.stackexchange.com/questions/83315/could-this-villainous-urban-development-scheme-be-easily-detected" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Could this villainous urban development scheme be easily detected?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-mathematica" title="Mathematica Stack Exchange"></div><a href="https://mathematica.stackexchange.com/questions/148134/substitute-some-1s-with-0s-in-random-list" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:387 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Substitute some 1s with 0s in random list
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-aviation" title="Aviation Stack Exchange"></div><a href="https://aviation.stackexchange.com/questions/38830/is-an-aborted-landing-considered-an-incident-for-the-faa" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:528 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is an aborted landing considered an incident for the FAA?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-engineering" title="Engineering Stack Exchange"></div><a href="https://engineering.stackexchange.com/questions/15798/whats-wrong-with-transporting-a-refrigerator-on-its-side" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:595 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What's wrong with transporting a refrigerator on its side?
+                </a>
+
+            </li>
+    </ul>
+
+        
+</div>
+		</div>
+	
+<div id="feed-link">
+    <div id="feed-link-text">
+        <a href="https://stackoverflow.com/feeds/question/13500458" title="feed of this question and its answers">
+            <span class="feed-icon"></span>question feed
+        </a>
+    </div>
+</div>	<script>
+StackExchange.ready(function(){$.get('/posts/13500458/ivc/66d3');});
+</script>
+<noscript>
+    <div><img src="/posts/13500458/ivc/66d3" class="dno" alt="" width="0" height="0"></div>
+</noscript><div style="display:none" id="prettify-lang">lang-c</div></div>
+
+    <script>
+        $('#wmd-input').one("keypress", function() {
+            $.ajax({
+                url: '/accounts/email-settings-form',
+                cache: false,
+                success: function(data) {
+                    $('#submit-button').parent().prepend(data);
+                }
+            });
+        });
+
+    </script>
+
+        </div>
+    </div><script async="" src="c%20-%20OpenGL%20NURBS%20surface%20-%20Stack%20Overflow_files/clc.js"></script>
+    <div id="footer" class="categories" role="contentinfo">
+        <div class="footerwrap">            
+            <div id="footer-menu">
+                <div class="top-footer-links">
+
+                    <a class="js-gps-track" data-gps-track="footer.click({ location: 2, link:1 })" href="https://stackoverflow.com/company/about">about us</a>
+                        <a class="js-gps-track" data-gps-track="footer.click({ location: 2, link:2 })" href="https://stackoverflow.com/tour">tour</a>
+                    <a class="js-gps-track" data-gps-track="footer.click({ location: 2, link:3 })" href="https://stackoverflow.com/help">help</a>
+                    <a class="js-gps-track" data-gps-track="footer.click({ location: 2, link:4 })" href="https://stackoverflow.blog/?blb=1">blog</a>
+                        <a class="js-gps-track" data-gps-track="footer.click({ location: 2, link:5 })" href="https://chat.stackoverflow.com/">chat</a>
+                    <a class="js-gps-track" data-gps-track="footer.click({ location: 2, link:6 })" href="https://data.stackexchange.com/">data</a>
+                    <a class="js-gps-track" data-gps-track="footer.click({ location: 2, link:7 })" href="https://stackexchange.com/legal">legal</a>
+                    <a class="js-gps-track" data-gps-track="footer.click({ location: 2, link:8 })" href="https://stackexchange.com/legal/privacy-policy">privacy policy</a>
+                    <a class="js-gps-track" data-gps-track="footer.click({ location: 2, link:9 })" href="https://stackoverflow.com/company/work-here">work here</a>
+                    <a class="js-gps-track" data-gps-track="footer.click({ location: 2, link:10 })" href="https://www.stackoverflowbusiness.com/advertise">advertising info</a>
+                        <a class="js-gps-track" data-gps-track="footer.click({ location: 2, link:11 })" href="https://stackoverflow.com/jobs/directory/developer-jobs">developer jobs directory</a>
+
+                    <a class="js-gps-track" data-gps-track="footer.click({ location: 2, link:12 })" onclick='StackExchange.switchMobile("on")'>mobile</a>
+                    <b><a class="js-gps-track" data-gps-track="footer.click({ location: 2, link:13 })" href="https://stackoverflow.com/contact">contact us</a></b>
+                        <b><a class="js-gps-track" data-gps-track="footer.click({ location: 2, link:14 })" href="https://meta.stackoverflow.com/">feedback</a></b>
+                    
+                </div>
+                <div id="footer-sites">
+                    <table>
+    <tbody><tr>
+            <th colspan="3">
+                Technology
+            </th>
+            <th>
+                Life / Arts
+            </th>
+            <th>
+                Culture / Recreation
+            </th>
+            <th>
+                Science
+            </th>
+            <th>
+                Other
+            </th>
+    </tr>
+    <tr>
+            <td>
+                <ol>
+                        <li><a href="https://stackoverflow.com/" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                        <li><a href="https://serverfault.com/" title="system and network administrators">Server Fault</a></li>
+                        <li><a href="https://superuser.com/" title="computer enthusiasts and power users">Super User</a></li>
+                        <li><a href="https://webapps.stackexchange.com/" title="power users of web applications">Web Applications</a></li>
+                        <li><a href="https://askubuntu.com/" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                        <li><a href="https://webmasters.stackexchange.com/" title="pro webmasters">Webmasters</a></li>
+                        <li><a href="https://gamedev.stackexchange.com/" title="professional and independent game developers">Game Development</a></li>
+                        <li><a href="https://tex.stackexchange.com/" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                        <li><a href="https://softwareengineering.stackexchange.com/" title="professionals, academics, and students working within the systems development life cycle">Software Engineering</a></li>
+                        <li><a href="https://unix.stackexchange.com/" title="users of Linux, FreeBSD and other Un*x-like operating systems">Unix &amp; Linux</a></li>
+                        <li><a href="https://apple.stackexchange.com/" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                        <li><a href="https://wordpress.stackexchange.com/" title="WordPress developers and administrators">WordPress Development</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="https://gis.stackexchange.com/" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                        <li><a href="https://electronics.stackexchange.com/" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                        <li><a href="https://android.stackexchange.com/" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                        <li><a href="https://security.stackexchange.com/" title="information security professionals">Information Security</a></li>
+                        <li><a href="https://dba.stackexchange.com/" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                        <li><a href="https://drupal.stackexchange.com/" title="Drupal developers and administrators">Drupal Answers</a></li>
+                        <li><a href="https://sharepoint.stackexchange.com/" title="SharePoint enthusiasts">SharePoint</a></li>
+                        <li><a href="https://ux.stackexchange.com/" title="user experience researchers and experts">User Experience</a></li>
+                        <li><a href="https://mathematica.stackexchange.com/" title="users of Wolfram Mathematica">Mathematica</a></li>
+                        <li><a href="https://salesforce.stackexchange.com/" title="Salesforce administrators, implementation experts, developers and anybody in-between">Salesforce</a></li>
+                        <li><a href="https://expressionengine.stackexchange.com/" title="administrators, end users, developers and designers for ExpressionEngine® CMS">ExpressionEngine® Answers</a></li>
+                        <li><a href="https://crypto.stackexchange.com/" title="software developers, mathematicians and others interested in cryptography">Cryptography</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="https://codereview.stackexchange.com/" title="peer programmer code reviews">Code Review</a></li>
+                        <li><a href="https://magento.stackexchange.com/" title="users of the Magento e-Commerce platform">Magento</a></li>
+                        <li><a href="https://dsp.stackexchange.com/" title="practitioners of the art and science of signal, image and video processing">Signal Processing</a></li>
+                        <li><a href="https://raspberrypi.stackexchange.com/" title="users and developers of hardware and software for Raspberry Pi">Raspberry Pi</a></li>
+                        <li><a href="https://codegolf.stackexchange.com/" title="programming puzzle enthusiasts and code golfers">Programming Puzzles &amp; Code Golf</a></li>
+                    
+                        <li>
+                            <a href="https://stackexchange.com/sites#technology" class="more">
+                                more (7)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="https://photo.stackexchange.com/" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                        <li><a href="https://scifi.stackexchange.com/" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                        <li><a href="https://graphicdesign.stackexchange.com/" title="Graphic Design professionals, students, and enthusiasts">Graphic Design</a></li>
+                        <li><a href="https://movies.stackexchange.com/" title="movie and tv enthusiasts">Movies &amp; TV</a></li>
+                        <li><a href="https://music.stackexchange.com/" title="musicians, students, and enthusiasts">Music: Practice &amp; Theory</a></li>
+                        <li><a href="https://cooking.stackexchange.com/" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                        <li><a href="https://diy.stackexchange.com/" title="contractors and serious DIYers">Home Improvement</a></li>
+                        <li><a href="https://money.stackexchange.com/" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+                        <li><a href="https://academia.stackexchange.com/" title="academics and those enrolled in higher education">Academia</a></li>
+                    
+                        <li>
+                            <a href="https://stackexchange.com/sites#lifearts" class="more">
+                                more (8)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="https://english.stackexchange.com/" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                        <li><a href="https://skeptics.stackexchange.com/" title="scientific skepticism">Skeptics</a></li>
+                        <li><a href="https://judaism.stackexchange.com/" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                        <li><a href="https://travel.stackexchange.com/" title="road warriors and seasoned travelers">Travel</a></li>
+                        <li><a href="https://christianity.stackexchange.com/" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                        <li><a href="https://ell.stackexchange.com/" title="speakers of other languages learning English">English Language Learners</a></li>
+                        <li><a href="https://japanese.stackexchange.com/" title="students, teachers, and linguists wanting to discuss the finer points of the Japanese language">Japanese Language</a></li>
+                        <li><a href="https://gaming.stackexchange.com/" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                        <li><a href="https://bicycles.stackexchange.com/" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                        <li><a href="https://rpg.stackexchange.com/" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                        <li><a href="https://anime.stackexchange.com/" title="anime and manga fans">Anime &amp; Manga</a></li>
+                        <li><a href="https://mechanics.stackexchange.com/" title="mechanics and DIY enthusiast owners of cars, trucks, and motorcycles">Motor Vehicle Maintenance &amp; Repair</a></li>
+                    
+                        <li>
+                            <a href="https://stackexchange.com/sites#culturerecreation" class="more">
+                                more (17)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="https://mathoverflow.net/" title="professional mathematicians">MathOverflow</a></li>
+                        <li><a href="https://math.stackexchange.com/" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                        <li><a href="https://stats.stackexchange.com/" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                        <li><a href="https://cstheory.stackexchange.com/" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                        <li><a href="https://physics.stackexchange.com/" title="active researchers, academics and students of physics">Physics</a></li>
+                        <li><a href="https://chemistry.stackexchange.com/" title="scientists, academics, teachers and students">Chemistry</a></li>
+                        <li><a href="https://biology.stackexchange.com/" title="biology researchers, academics, and students">Biology</a></li>
+                        <li><a href="https://cs.stackexchange.com/" title="students, researchers and practitioners of computer science">Computer Science</a></li>
+                        <li><a href="https://philosophy.stackexchange.com/" title="those interested in the study of the fundamental nature of knowledge, reality, and existence">Philosophy</a></li>
+                    
+                        <li>
+                            <a href="https://stackexchange.com/sites#science" class="more">
+                                more (3)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="https://meta.stackexchange.com/" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li>
+                        <li><a href="https://stackapps.com/" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                        <li><a href="https://area51.stackexchange.com/" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                        <li><a href="https://www.stackoverflowbusiness.com/talent">Stack Overflow Talent</a></li>
+                    
+                </ol>
+            </td>
+    </tr>
+</tbody></table>
+                </div>
+            </div>
+            <div id="copyright">
+                site design / logo © 2017 Stack Exchange Inc; user contributions licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc by-sa 3.0</a> 
+                with <a href="https://stackoverflow.blog/2009/06/25/attribution-required/" rel="license">attribution required</a>
+            </div>
+            <div id="svnrev">
+                rev 2017.6.9.26204
+            </div>
+                </div>
+    </div>
+    <noscript>
+        <div id="noscript-warning">Stack Overflow works best with JavaScript enabled
+            <img src="https://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno">
+        </div>
+    </noscript>
+<script>var 
+z=document.createElement("script");z.type="text/javascript",z.async=!0,z.src="https://static.adzerk.net/ados.js";var
+ 
+s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(z,s);</script>
+<script>
+var ados = ados || {};
+ados.run = ados.run || [];
+
+
+ados.run.push(function () {
+    setTimeout(function () { $("#adzerk-user-match").remove(); }, 
+window.AUMIframeDone ? 0 : 2000);
+    
+ados_setKeywords('c,opengl,bezier,nurbs,x-user-registered,x-industry-manufacturing,x-large-company,x-cross-site-serverfault.com');;
+ ados_load();
+});   
+
+</script>
+
+    <script>
+            (function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || 
+function() { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new
+ Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = 
+g; m.parentNode.insertBefore(a, m);
+            })(window, document, 'script', 
+'https://www.google-analytics.com/analytics.js', 'ga');
+                ga('create', 'UA-5620270-1', {'userId': '121589' });
+                ga('create', 'UA-5620270-59', {name: 'pageData', 
+sampleRate: 5, userId: '121589' });
+                ga('set', 'dimension1', '121589');
+                ga('pageData.set', 'dimension1', '121589');
+                ga('set', 'dimension2', '|c|opengl|bezier|nurbs|');
+                ga('pageData.set', 'dimension2', 
+'|c|opengl|bezier|nurbs|');
+                ga('send', 'pageview');
+                ga('pageData.send', 'pageview');
+        var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+        (function () {
+            var ssl='https:'==document.location.protocol,
+                s=document.getElementsByTagName('script')[0],
+                qc=document.createElement('script');
+                qc.async = true;
+                qc.src = (ssl ? 'https://secure' : 'http://edge') + 
+'.quantserve.com/quant.js';
+                s.parentNode.insertBefore(qc, s);
+                _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+                            var sc=document.createElement('script');
+                sc.async=true;
+                sc.src=(ssl?'https://sb':'http://b') + 
+'.scorecardresearch.com/beacon.js';
+                s.parentNode.insertBefore(sc, s);
+                _comscore.push({ c1: "2", c2: "17440561" });
+        })();
+
+    </script>
+        
+    
+            <script type="text/javascript">
+                
+                (function(appendChild) {
+                    Node.prototype.appendChild = function() {
+                        var parent = this;
+                        var newNode = arguments[0];
+                        if (parent.nodeName === 'HEAD'
+                            && newNode
+                            && newNode.nodeName === 'SCRIPT'
+                            && newNode.src) {
+                            
+                            window.setTimeout(function() {
+                                var result = 
+newNode.src.match(/^https:\/\/maps\.googleapis\.com\/maps\/api\/place\/js\/(\w+)Service\./i)
+ || [];
+                                var service = result[1];
+                                if (service) {
+                                    if (service === 'Autocompletion') 
+service =  2;
+                                    else if (service === 'Place') 
+service = 1;
+                                    else service = 0;
+                                    StackExchange.using('gps', 
+function() {
+                                        
+StackExchange.gps.track('google_maps_places_api.call', { service: 
+service });
+                                    });
+                                }
+                            }, 0);
+                        }
+                        return appendChild.apply(this, arguments);
+                    };
+                })(Node.prototype.appendChild);
+            </script>
+    
+</body></html>

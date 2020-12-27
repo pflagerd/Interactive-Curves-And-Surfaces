@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="lesson.css" media="screen" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js" integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "\\[", right: "\\]", display: true},
+                    {left: "$", right: "$", display: false},
+                    {left: "\\(", right: "\\)", display: false}
+                ]
+            });
+        });
+    </script>
+    <title>Lesson 1</title>
+</head>
+<body>
+<h1>The Function</h1>
+In mathematics and engineering we often use equations like $y = 3x + 4$.
+
+<p>If you read the equation aloud, you say "y equals 3 (times) x plus 4."</p>
+
+<p>Notice that "equals" and "equation" have the same stem-word "equa", from the latin word which means "identical".</p>
+
+<p>Notice that the word "times" is optional.</p>
+
+<p>When we use an equation to compute something, we often refer to the equation as a formula.</p>
+
+<p>What "formula" means is a procedure whereby you substitute a value for $x$ into the equation, and the use the equation to compute a corresponding value of $y$.</p>
+
+<p>For example, if you substitute the value $5$ for $x$, you get a corresponding $y$ value of $3\times5 + 4$.</p>
+
+<p>Since $3\times 5 + 4 = 19$, we can say that for $x$ = $5$, the formula yields $y$ = 19.</p>
+
+<p>Obviously, computers are very good at computing values from formulas.</p>
+
+<p>Observe that in the given equation, for any single value of $x$ (where $x$ is a real number), there is a corresponding single value of $y$ (where $y$ is also a real number).</p>
+
+<p>When an equation has the property that for any single value of $x$ there is a corresponding single value of $y$, we say that the equation represents a <b><i>function</i></b>.</p>
+
+<p>In such a case, we may write $f(x) = 3x+4$ instead of $y = 3x + 4$</p>
+
+<p>If you read this function aloud, you say "f of x equals 3 (times) x plus 4.</p>
+
+<p>Here, "f of x" is an abbreviation of "function of x".</p>
+
+<p>Most computer programming languages also have language features that they call functions, but it's important that computer language functions are not always equivalent to mathematical functions.</p>
+
+<p>only when they have the same properties as mathematical functions, are computer language functions equivalent to mathematical functions.</p>
+
+<p>Because they are very good at computing values from formulas, and because they have graphics capabilities, computers are very good at drawing <b><i>graphs</i></b> of functions.</p>
+
+<p>Drawing the graph of $y = 3x + 4$ involves computing $y$ for a great many values of $x$, and then drawing the results - often as a great many points - on the computer's screen.</p>
+
+<p>ASSIGNMENT: Your assignment is to draw a graph similar to this one, using JGlut. The graph shall consist of 1024 points, and should reach from one side of the window to the other. It should resize correctly. </p>
+
+<img style="height=10vmax; width = 30vmax; display: block; margin-left: auto; margin-right: auto;" src="images/Screenshot_20190714_160424.png"/>
+</body>
+</html>
